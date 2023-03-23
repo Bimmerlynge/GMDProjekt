@@ -7,21 +7,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movement _movement;
-    private Dash _dash;
-    private Weapon _weapon;
+    private Dashing _dashing;
+    [SerializeField]
+    private WeaponManager _weapon;
 
     
 
     private void Awake()
     {
         _movement = GetComponent<Movement>();
-        _dash = GetComponent<Dash>();
-        _weapon = GetComponent<Weapon>();
+        _dashing = GetComponent<Dashing>();
+        //_weapon = GetComponent<WeaponManager>();
     }
 
     public void PrimaryAttack()
     {
-        _weapon.PrimaryAttack();
+        _weapon.PrimAtk();
     }
 
 
@@ -34,6 +35,6 @@ public class PlayerController : MonoBehaviour
     
     public void Dash()
     {
-        _dash.Dashing();
+        _dashing.Dash();
     }
 }
