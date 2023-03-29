@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] private GameObject playerGameObject;
     private GameObject currentWeapon;
     private bool isAttacking = false;
+    private Vector3 atkDirection;
 
     private void Start()
     {
@@ -41,6 +44,11 @@ public class WeaponManager : MonoBehaviour
         ToggleAtkCollider(true);
         yield return new WaitForSeconds(2f);
         ToggleAtkCollider(false);
+    }
+
+    private void SetAttackDirection(Vector3 direction)
+    {
+        transform.rotation = quaternion.LookRotation(direction, Vector3.up);
     }
 
     private void OnTriggerEnter(Collider other)

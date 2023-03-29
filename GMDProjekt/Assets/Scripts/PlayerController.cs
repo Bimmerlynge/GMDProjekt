@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     private Movement _movement;
     private Dashing _dashing;
+    private Attacking _attacking;
     [SerializeField]
     private WeaponManager _weapon;
 
@@ -17,12 +18,18 @@ public class PlayerController : MonoBehaviour
     {
         _movement = GetComponent<Movement>();
         _dashing = GetComponent<Dashing>();
+        _attacking = GetComponent<Attacking>();
         //_weapon = GetComponent<WeaponManager>();
     }
 
     public void PrimaryAttack()
     {
-        _weapon.PrimAtk();
+        _attacking.PrimAtk();
+    }
+
+    public void AimDirection(Vector3 input, bool isMouse = false)
+    {
+        _attacking.SetAimDirection(input, isMouse);
     }
 
 
