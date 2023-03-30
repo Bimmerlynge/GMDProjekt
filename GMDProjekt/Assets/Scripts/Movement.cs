@@ -7,8 +7,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 5f;
-
-    private float currentSpeed;
+    
     private Rigidbody _rb;
     public Vector3 MoveVector { get; set; }
     private Vector3 _moveDirection;
@@ -17,11 +16,7 @@ public class Movement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
     }
-
-    private void Start()
-    {
-        currentSpeed = moveSpeed;
-    }
+    
 
     private void Update()
     {
@@ -45,7 +40,7 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        var moveDelta = _moveDirection * currentSpeed * Time.deltaTime;
+        var moveDelta = _moveDirection * moveSpeed * Time.deltaTime;
         _rb.MovePosition(transform.position + moveDelta);
     }
     

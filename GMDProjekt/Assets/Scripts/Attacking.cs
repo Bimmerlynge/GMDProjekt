@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Movement))]
 public class Attacking : MonoBehaviour
 {
+    [SerializeField] private GameObject primAtkPrefab;
     private Movement _movement;
     private WeaponManager _weaponManager;
     private Vector3 _aimDirection;
