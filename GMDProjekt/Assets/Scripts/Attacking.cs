@@ -35,11 +35,6 @@ public class Attacking : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void Rotate()
     {
         Debug.DrawRay(transform.position, _aimDirection * 10, Color.magenta);

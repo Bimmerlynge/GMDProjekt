@@ -8,9 +8,14 @@ public class PlayerInputManager : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     private PlayerInputActions _actions;
-    [SerializeField]
-    private bool _liiigeFix;
-    
+
+    public delegate void MoveAction(Vector2 direction);
+    public static event MoveAction MoveEvent;
+
+    public delegate void DashAction();
+
+    public static event DashAction DashEvent;
+
     private void OnEnable()
     {
         _actions = new PlayerInputActions();
@@ -75,12 +80,12 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Dash(InputAction.CallbackContext context)
     {
-        playerController.Dash();
+        if (DashEvent != null) DashEvent();
     }
 
     private void Move(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
-        playerController.SetMoveDirection(value);
+        if (MoveEvent != null) MoveEvent(value);
     }
 }
