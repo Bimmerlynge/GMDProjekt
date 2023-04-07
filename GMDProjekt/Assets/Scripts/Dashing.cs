@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Unity.XR.GoogleVr;
 using UnityEngine;
 using Util;
 
@@ -90,7 +89,7 @@ public class Dashing : MonoBehaviour
             var targetPosition = GetDashLocation();
             var targetDirection = (targetPosition - transform.position);
             var dashSpeed = targetDirection.magnitude / dashDuration;
-            var moveDelta = targetDirection.normalized * dashSpeed * Time.deltaTime;
+            var moveDelta = targetDirection.normalized * (dashSpeed * Time.deltaTime);
             _rb.MovePosition(transform.position + moveDelta);
             dashTimer += Time.deltaTime;
         }

@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        var moveDelta = _moveDirection * moveSpeed * Time.deltaTime;
+        var moveDelta = _moveDirection * (moveSpeed * Time.deltaTime);
         _rb.MovePosition(transform.position + moveDelta);
     }
 
