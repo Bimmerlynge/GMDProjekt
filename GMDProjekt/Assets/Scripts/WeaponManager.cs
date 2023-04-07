@@ -10,6 +10,12 @@ public class WeaponManager : MonoBehaviour
     private GameObject currentWeapon;
     private bool isAttacking = false;
     private Vector3 atkDirection;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
