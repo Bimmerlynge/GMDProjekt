@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Collide
   - Enemy
+  - MeleeAtk
+  - PlayerAtk
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,10 @@ public class PlayerInputManager : MonoBehaviour
 
     public static event DashAction DashEvent;
 
+    public delegate void PrimaryAttack();
+
+    public static event PrimaryAttack PrimaryAttackEvent;
+
     private void OnEnable()
     {
         _actions = new PlayerInputActions();
@@ -60,7 +64,7 @@ public class PlayerInputManager : MonoBehaviour
                 {
                     mousePos = hit.point;
                 }
-
+    
                 Vector3 aimVector = (mousePos - transform.position).normalized;
                 aimVector.y = 0;
                 Debug.DrawRay(transform.position, aimVector * 15, Color.blue);
@@ -75,7 +79,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void PrimAtk(InputAction.CallbackContext context)
     {
-        playerController.PrimaryAttack();
+        if (PrimaryAttackEvent != null) PrimaryAttackEvent();
     }
 
     private void Dash(InputAction.CallbackContext context)

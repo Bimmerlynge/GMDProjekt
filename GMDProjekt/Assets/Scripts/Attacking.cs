@@ -9,7 +9,6 @@ public class Attacking : MonoBehaviour
 {
     [SerializeField] private GameObject primAtkPrefab;
     private Movement _movement;
-    private WeaponManager _weaponManager;
     private Vector3 _aimDirection;
     private bool _isAttacking;
     private Rigidbody _rb;
@@ -17,7 +16,6 @@ public class Attacking : MonoBehaviour
     private void Awake()
     {
         _movement = GetComponent<Movement>();
-        _weaponManager = GetComponentInChildren<WeaponManager>();
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -49,14 +47,8 @@ public class Attacking : MonoBehaviour
 
     private IEnumerator AttackCoroutine()
     {
-        ToggleMovement(false);
         Rotate();
         yield return new WaitForSeconds(1.5f);
-        ToggleMovement(true);
     }
-
-    private void ToggleMovement(bool value)
-    {
-        _movement.enabled = value;
-    }
+    
 }
