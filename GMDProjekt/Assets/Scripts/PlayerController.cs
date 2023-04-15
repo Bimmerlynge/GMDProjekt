@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private WeaponManager _weapon;
 
     private Animator _animator;
+    private PrimaryAttack _primaryAttack;
     
     
 
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         _movement = GetComponent<Movement>();
         _dashing = GetComponent<Dashing>();
         _attacking = GetComponent<Attacking>();
+        _primaryAttack = GetComponent<PrimaryAttack>();
         //_weapon = GetComponent<WeaponManager>();
     }
 
@@ -29,39 +31,28 @@ public class PlayerController : MonoBehaviour
     {
         Movement.IsMovingEvent += SetMovingState;
         Dashing.IsDashingEvent += SetDashingState;
+        PlayerInputManager.PrimaryAttackEvent += PrimaryAttack;
 
+    }
+
+    private void PrimaryAttack()
+    {
+        _attacking.PrimAtk();
+        _primaryAttack.Activate();
+        _animator.SetTrigger("MeleePrimAtk");
     }
 
     private void SetDashingState(bool state)
     {
-        _animator.SetBool("IsDashing", state);
+        _animator.SetTrigger("Dash");
         //SetDashParticles(state);
     }
-
-    private void SetDashParticles(bool state)
-    {
-        var dashObject = transform.Find("DashParticles").gameObject;
-        var particles = dashObject.GetComponentInChildren<ParticleSystem>();
-        if (state)
-        {
-            particles.Play();
-        }
-        else
-        {
-            particles.Stop();
-        }
-    }
     
-
     private void SetMovingState(bool state)
     {
         _animator.SetBool("isMoving", state);
     }
-
-    public void PrimaryAttack()
-    {
-        _attacking.PrimAtk();
-    }
+    
 
     public void AimDirection(Vector3 input, bool isMouse = false)
     {
