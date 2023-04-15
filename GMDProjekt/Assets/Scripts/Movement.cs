@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     private Vector3 _orientation;
 
     private bool _canMove = true;
+    private bool _lockOrientation = false;
 
     public delegate void IsMovingAction(bool state);
     public static event IsMovingAction IsMovingEvent;

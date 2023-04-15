@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private WeaponManager _weapon;
 
     private Animator _animator;
-
+    
     
 
     private void Awake()
@@ -28,8 +28,30 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Movement.IsMovingEvent += SetMovingState;
-        
+        Dashing.IsDashingEvent += SetDashingState;
+
     }
+
+    private void SetDashingState(bool state)
+    {
+        _animator.SetBool("IsDashing", state);
+        //SetDashParticles(state);
+    }
+
+    private void SetDashParticles(bool state)
+    {
+        var dashObject = transform.Find("DashParticles").gameObject;
+        var particles = dashObject.GetComponentInChildren<ParticleSystem>();
+        if (state)
+        {
+            particles.Play();
+        }
+        else
+        {
+            particles.Stop();
+        }
+    }
+    
 
     private void SetMovingState(bool state)
     {
