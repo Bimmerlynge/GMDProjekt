@@ -2,16 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Util;
 
 public class Movement : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 5f;
-
-    private float currentSpeed;
+    
     private Rigidbody _rb;
-    public Vector3 MoveVector { get; set; }
     private Vector3 _moveDirection;
+    private Vector3 _orientation;
+
+    private bool _canMove = true;
+    private bool _lockOrientation = false;
+
+    public delegate void IsMovingAction(bool state);
+    public static event IsMovingAction IsMovingEvent;
     
     private void Awake()
     {
@@ -20,17 +26,11 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        currentSpeed = moveSpeed;
+        PlayerInputManager.MoveEvent += HandleMoveInput;
     }
-
-    private void Update()
-    {
-        SetMoveDirection();
-    }
-    
     void FixedUpdate()
     {
-        //HandleDash();
+        if (!_canMove) return;
         Rotation();
         Move();
     }
@@ -38,22 +38,38 @@ public class Movement : MonoBehaviour
 
     private void Rotation()
     {
-        if (MoveVector == Vector3.zero) return;
-        var lookRotation = Quaternion.LookRotation(_moveDirection, Vector3.up);
+        var lookRotation = Quaternion.LookRotation(_orientation, Vector3.up);
         _rb.MoveRotation(lookRotation);
     }
 
     private void Move()
     {
-        var moveDelta = _moveDirection * currentSpeed * Time.deltaTime;
+        var moveDelta = _moveDirection * (moveSpeed * Time.deltaTime);
         _rb.MovePosition(transform.position + moveDelta);
     }
-    
 
-    public void SetMoveDirection()
+    private void HandleMoveInput(Vector2 input)
     {
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, -45, 0));
-        _moveDirection = matrix.MultiplyPoint3x4(MoveVector);
+        if (IsMovingEvent != null)
+        {
+            IsMovingEvent(input != Vector2.zero);
+        }
+
+        SetMoveDirection(input);
+        SetOrientation();
+    }
+
+    private void SetOrientation()
+    {
+        if (_moveDirection == Vector3.zero)
+            _orientation = transform.forward;
+        else
+            _orientation = _moveDirection;
+    }
+
+    private void SetMoveDirection(Vector2 input)
+    {
+        _moveDirection = input.GetIsometricVector3();
     }
     
 

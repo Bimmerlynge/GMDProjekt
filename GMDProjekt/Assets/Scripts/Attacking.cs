@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Movement))]
 public class Attacking : MonoBehaviour
 {
+    [SerializeField] private GameObject primAtkPrefab;
     private Movement _movement;
     private WeaponManager _weaponManager;
     private Vector3 _aimDirection;
@@ -32,11 +33,6 @@ public class Attacking : MonoBehaviour
             var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, -45, 0));
             _aimDirection = matrix.MultiplyPoint3x4(aimInput);
         }
-    }
-
-    private void Update()
-    {
-        
     }
 
     private void Rotate()

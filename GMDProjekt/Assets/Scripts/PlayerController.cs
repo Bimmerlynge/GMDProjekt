@@ -12,14 +12,50 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private WeaponManager _weapon;
 
+    private Animator _animator;
+    
     
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _movement = GetComponent<Movement>();
         _dashing = GetComponent<Dashing>();
         _attacking = GetComponent<Attacking>();
         //_weapon = GetComponent<WeaponManager>();
+    }
+
+    private void Start()
+    {
+        Movement.IsMovingEvent += SetMovingState;
+        Dashing.IsDashingEvent += SetDashingState;
+
+    }
+
+    private void SetDashingState(bool state)
+    {
+        _animator.SetBool("IsDashing", state);
+        //SetDashParticles(state);
+    }
+
+    private void SetDashParticles(bool state)
+    {
+        var dashObject = transform.Find("DashParticles").gameObject;
+        var particles = dashObject.GetComponentInChildren<ParticleSystem>();
+        if (state)
+        {
+            particles.Play();
+        }
+        else
+        {
+            particles.Stop();
+        }
+    }
+    
+
+    private void SetMovingState(bool state)
+    {
+        _animator.SetBool("isMoving", state);
     }
 
     public void PrimaryAttack()
@@ -32,16 +68,5 @@ public class PlayerController : MonoBehaviour
         _attacking.SetAimDirection(input, isMouse);
     }
 
-
-
-    public void SetMoveDirection(Vector2 input)
-    {
-        _movement.MoveVector = new Vector3(input.x, 0, input.y);
-    }
     
-    
-    public void Dash()
-    {
-        _dashing.Dash();
-    }
 }
