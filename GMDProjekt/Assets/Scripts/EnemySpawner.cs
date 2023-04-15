@@ -7,7 +7,12 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int enemyCount = 10;
-
+    
+    public int EnemyCount
+    {
+        get => enemyCount;
+        set => enemyCount = value;
+    }
     private void Start()
     {
         Invoke( "SpawnEnemies",3f);

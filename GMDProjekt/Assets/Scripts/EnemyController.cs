@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public delegate void EnemyDefeated();
+
+    public static event EnemyDefeated EnemyDefeatedEvent;
     private Health _health;
 
     private void Awake()
@@ -12,11 +15,8 @@ public class EnemyController : MonoBehaviour
         _health = GetComponent<Health>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDestroy()
     {
-        if (other.CompareTag("PlayerAtk"))
-        {
-            
-        }
+        if (EnemyDefeatedEvent != null) EnemyDefeatedEvent();
     }
 }
