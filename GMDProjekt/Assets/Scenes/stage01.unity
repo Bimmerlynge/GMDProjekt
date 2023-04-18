@@ -270,6 +270,8 @@ GameObject:
   m_Component:
   - component: {fileID: 81285704}
   - component: {fileID: 81285705}
+  - component: {fileID: 81285707}
+  - component: {fileID: 81285706}
   m_Layer: 5
   m_Name: RuneSelectionPanel
   m_TagString: Untagged
@@ -312,6 +314,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a734c1ea5d54c0646a8f4f1b0a33b1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &81285706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81285703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &81285707
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81285703}
+  m_CullTransparentMesh: 1
 --- !u!1 &113980224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,7 +1398,7 @@ GameObject:
   - component: {fileID: 599690235}
   - component: {fileID: 599690234}
   m_Layer: 5
-  m_Name: Option1 (2)
+  m_Name: Option3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1467,7 +1507,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 599690234}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 81285705}
+        m_TargetAssemblyTypeName: RuneSelector, Assembly-CSharp
+        m_MethodName: SelectOption3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &680406087
 GameObject:
   m_ObjectHideFlags: 0
@@ -7231,6 +7283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameHUD: {fileID: 1882524737}
   interactablePanel: {fileID: 1882524737}
+  runeSelectionPanel: {fileID: 81285703}
 --- !u!1 &980146501
 GameObject:
   m_ObjectHideFlags: 0
@@ -8420,7 +8473,7 @@ GameObject:
   - component: {fileID: 1579733723}
   - component: {fileID: 1579733722}
   m_Layer: 5
-  m_Name: Option1 (1)
+  m_Name: Option2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8529,7 +8582,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1579733722}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 81285705}
+        m_TargetAssemblyTypeName: RuneSelector, Assembly-CSharp
+        m_MethodName: SelectOption2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1653071193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9188,7 +9253,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1773201973}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 81285705}
+        m_TargetAssemblyTypeName: RuneSelector, Assembly-CSharp
+        m_MethodName: SelectOption1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1786057960
 GameObject:
   m_ObjectHideFlags: 0
