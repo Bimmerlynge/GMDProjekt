@@ -8,10 +8,23 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameHUD;
     [SerializeField] private GameObject interactablePanel;
+    [SerializeField] private GameObject runeSelectionPanel;
 
     private void Start()
     {
         SetUIInteractableState(false);
+        runeSelectionPanel.SetActive(false);
+        RuneSelector.RuneSelectedEvent += OnRuneSelected;
+    }
+
+    private void OnRuneSelected()
+    {
+        runeSelectionPanel.SetActive(false);
+    }
+
+    public void EnableRuneSelectionPanel()
+    {
+        runeSelectionPanel.SetActive(true);
     }
 
     public void SetInteractablePanel(bool state, string text = "")
