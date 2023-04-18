@@ -6,25 +6,33 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject uiInteractableTextObject;
+    [SerializeField] private GameObject gameHUD;
+    [SerializeField] private GameObject interactablePanel;
 
     private void Start()
     {
-        print("start");
         SetUIInteractableState(false);
-        print("bøgse burde være fucking inaktiv");
     }
 
-    public void SetUIInteractableText(string text)
+    public void SetInteractablePanel(bool state, string text = "")
     {
-        var textObject = uiInteractableTextObject.GetComponentInChildren<TextMeshProUGUI>();
-        textObject.text = text;
+        SetUIInteractableState(state);
+        if (!string.IsNullOrEmpty(text))
+            SetUIInteractableText(text);
+    }
+    
+    private void SetUIInteractableState(bool value)
+    {
+        interactablePanel.SetActive(value);
     }
 
-    public void SetUIInteractableState(bool value)
+    private void SetUIInteractableText(string text)
     {
-        uiInteractableTextObject.SetActive(value);
+       var textObject = interactablePanel.GetComponentInChildren<TextMeshProUGUI>();
+       textObject.text = text;
     }
+
+    
 }
     
 

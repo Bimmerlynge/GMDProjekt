@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1811611206298579824}
   - component: {fileID: 1811611206298579789}
   - component: {fileID: 1811611206298579791}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: OptionTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 1811611207251033316}
   - component: {fileID: 1811611207251033317}
   - component: {fileID: 1811611207251033313}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StageOption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830e15bf598216d4bb9af920df5d496d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiInteractableTextObject: {fileID: 0}
 --- !u!54 &1811611207251033313
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -11,17 +11,17 @@ public class StageOption : MonoBehaviour
    private void Start()
    {
       _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-      print("har vi en UIManger: " + _uiManager);
    }
 
    private void OnTriggerEnter(Collider other)
    {
-      _uiManager.SetUIInteractableState(true);
-      _uiManager.SetUIInteractableText("Proceed");
+      if (!other.CompareTag("Player")) return;
+      _uiManager.SetInteractablePanel(true, "Proceed");
    }
 
    private void OnTriggerExit(Collider other)
    {
-      _uiManager.SetUIInteractableState(true);
+      if (!other.CompareTag("Player")) return;
+      _uiManager.SetInteractablePanel(false);
    }
 }

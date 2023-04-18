@@ -17,13 +17,13 @@ public class Rune : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _uiManager.SetUIInteractableState(true);
+        if (!other.CompareTag("Player")) return;
+        _uiManager.SetInteractablePanel(true, "Accept");
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _uiManager.SetUIInteractableState(true);
-        _uiManager.SetUIInteractableText("Accept");
+        if (!other.CompareTag("Player")) return;
+        _uiManager.SetInteractablePanel(false);
     }
-    
 }

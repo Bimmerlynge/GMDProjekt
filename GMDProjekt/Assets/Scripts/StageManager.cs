@@ -11,11 +11,15 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        EnemyController.EnemyDefeatedEvent += HandleEnemyDefeated;
+        EnemyController.EnemyDefeatedEvent += OnEnemyDefeated;
         _enemySpawner.EnemyCount = enemiesLeft;
     }
+    private void OnDisable()
+    {
+        EnemyController.EnemyDefeatedEvent -= OnEnemyDefeated;
+    }
 
-    private void HandleEnemyDefeated()
+    private void OnEnemyDefeated()
     {
         enemiesLeft--;
         if (enemiesLeft == 0) StageComplete();
@@ -34,6 +38,13 @@ public class StageManager : MonoBehaviour
 
     private void SpawnReward()
     {
+        Invoke("InstantiateReward", 1f);
+    }
+
+    private void InstantiateReward()
+    {
         Instantiate(currentReward, Vector3.zero, Quaternion.identity);
     }
+
+   
 }
