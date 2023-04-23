@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Rune : MonoBehaviour
+public class Rune : MonoBehaviour, IInteractable
 {
     private UIManager _uiManager;
     private bool _canPickup;
@@ -13,7 +13,7 @@ public class Rune : MonoBehaviour
     {
         transform.position = new Vector3(0, 1, 10);
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-        PlayerInputManager.InteractEvent += OnPickupItem;
+        PlayerInputManager.InteractEvent += OnInteract;
         RuneSelector.RuneSelectedEvent += OnRuneSelected;
     }
 
@@ -22,26 +22,21 @@ public class Rune : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         _canPickup = true;
         _uiManager.SetInteractablePanel(true, "Accept");
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         _canPickup = false;
         _uiManager.SetInteractablePanel(false);
     }
 
-    private void OnPickupItem()
-    {
-        OpenRuneSelectionPanel();
-    }
-
-    private void OpenRuneSelectionPanel()
+    public void OnInteract()
     {
         _uiManager.EnableRuneSelectionPanel();
     }
@@ -53,7 +48,7 @@ public class Rune : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInputManager.InteractEvent -= OnPickupItem;
+        PlayerInputManager.InteractEvent -= OnInteract;
         RuneSelector.RuneSelectedEvent -= OnRuneSelected;
         _uiManager.SetInteractablePanel(false);
     }
