@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public delegate void DamageTakenAction();
+
+    public static event DamageTakenAction OnDamageTaken;
+    
     [SerializeField] private float maxHealth = 50;
     
     [SerializeField]
@@ -20,10 +24,16 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
             Die();
+        if (OnDamageTaken != null) OnDamageTaken();
     }
 
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    public float GetHealthPercentage()
+    {
+        return currentHealth / maxHealth;
     }
 }

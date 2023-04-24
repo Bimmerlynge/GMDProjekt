@@ -15,18 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Dash",
+                    "name": "PrimaryAtk",
                     "type": "Button",
-                    "id": "c9058f2a-1847-4910-83dd-55611519cf98",
+                    "id": "f971e52b-1497-4a80-9df0-fdc1ea9f6106",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PrimaryAtk",
+                    "name": "Special",
                     "type": "Button",
-                    "id": "f971e52b-1497-4a80-9df0-fdc1ea9f6106",
+                    "id": "89d04035-eb67-4b1e-b4fe-b001447bce83",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "c9058f2a-1847-4910-83dd-55611519cf98",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -120,28 +129,6 @@
                 },
                 {
                     "name": "",
-                    "id": "765bf256-25e7-40af-8e8b-bf0df1aa3586",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KBM",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b63d8190-c6f7-4c53-bf0a-e9a60c86cca8",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b679f9c0-f681-4f9a-a718-aab920d15e2c",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -192,6 +179,39 @@
                     "processors": "",
                     "groups": "KBM",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ddcce96-683b-40b8-bfc1-b01df65b07ba",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Special",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "765bf256-25e7-40af-8e8b-bf0df1aa3586",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b63d8190-c6f7-4c53-bf0a-e9a60c86cca8",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

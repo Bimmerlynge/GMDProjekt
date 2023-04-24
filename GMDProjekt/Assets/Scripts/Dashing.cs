@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using Util;
+
 
 public class Dashing : MonoBehaviour
 {
@@ -14,16 +14,13 @@ public class Dashing : MonoBehaviour
     [SerializeField] private int currentDashStacks;
     [SerializeField] private float dashForce = 50f;
     [SerializeField] private ParticleSystem dashParticles;
+    [SerializeField]
     private Rigidbody _rb;
 
     public delegate void DashAction(bool state);
 
     public static event DashAction IsDashingEvent;
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
+    
 
     private void Start()
     {

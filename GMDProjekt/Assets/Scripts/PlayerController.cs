@@ -15,39 +15,29 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private PrimaryAttack _primaryAttack;
     
-    
-
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _movement = GetComponent<Movement>();
-        _dashing = GetComponent<Dashing>();
-        _attacking = GetComponent<Attacking>();
-        _primaryAttack = GetComponent<PrimaryAttack>();
         //_weapon = GetComponent<WeaponManager>();
+    }
+
+    // Used by unity animation events
+    void AbilityStarted()
+    {
+        _movement.enabled = false;
+    }
+    // Used by unity animation events
+    void AbilityEnded()
+    {
+        _movement.enabled = true;
     }
 
     private void Start()
     {
         Movement.IsMovingEvent += SetMovingState;
-        Dashing.IsDashingEvent += SetDashingState;
-        PlayerInputManager.PrimaryAttackEvent += PrimaryAttack;
-
     }
 
-    private void PrimaryAttack()
-    {
-        _attacking.PrimAtk();
-        _primaryAttack.Activate();
-        _animator.SetTrigger("MeleePrimAtk");
-    }
-
-    private void SetDashingState(bool state)
-    {
-        _animator.SetTrigger("Dash");
-        //SetDashParticles(state);
-    }
-    
     private void SetMovingState(bool state)
     {
         _animator.SetBool("isMoving", state);

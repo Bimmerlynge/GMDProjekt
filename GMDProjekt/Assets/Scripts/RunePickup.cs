@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Rune : MonoBehaviour
+public class RunePickup : MonoBehaviour
 {
     private UIManager _uiManager;
     private bool _canPickup;

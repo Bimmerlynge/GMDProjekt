@@ -13,12 +13,14 @@ public class PlayerInputManager : MonoBehaviour
     public static event MoveAction MoveEvent;
 
     public delegate void DashAction();
-
     public static event DashAction DashEvent;
-
+    
     public delegate void PrimaryAttack();
 
     public static event PrimaryAttack PrimaryAttackEvent;
+
+    public delegate void SpecialAttackAction(); 
+    public static event SpecialAttackAction OnSpecialAttackEvent;
 
     public delegate void Interact();
 
@@ -39,8 +41,11 @@ public class PlayerInputManager : MonoBehaviour
         _actions.Player.PrimaryAtk.Enable();
         _actions.Player.PrimaryAtk.performed += PrimAtk;
         
+        _actions.Player.Special.Enable();
+        _actions.Player.Special.performed += SpecialAtk;
+        
         _actions.Player.Aim.Enable();
-        _actions.Player.Aim.performed += Aim;
+        //_actions.Player.Aim.performed += Aim;
         
         _actions.Player.Interact.Enable();
         _actions.Player.Interact.performed += OnInteract;
@@ -58,6 +63,11 @@ public class PlayerInputManager : MonoBehaviour
         _actions.Player.Interact.performed -= OnInteract;
         
         _actions.Disable();
+    }
+
+    private void SpecialAtk(InputAction.CallbackContext context)
+    {
+        if (OnSpecialAttackEvent != null) OnSpecialAttackEvent.Invoke();
     }
 
     private void OnInteract(InputAction.CallbackContext context)
