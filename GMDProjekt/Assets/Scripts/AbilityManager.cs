@@ -7,6 +7,7 @@ public class AbilityManager : MonoBehaviour
 {
     private DashAbility _dashAbility;
     private AttackAbility _attackAbility;
+    private SpecialAbility _specialAbility;
     private Animator _animator;
     
 
@@ -15,6 +16,7 @@ public class AbilityManager : MonoBehaviour
         _animator = GetComponentInParent<Animator>();
         _dashAbility = GetComponentInChildren<DashAbility>();
         _attackAbility = GetComponentInChildren<AttackAbility>();
+        _specialAbility = GetComponentInChildren<SpecialAbility>();
     }
     
 
@@ -39,7 +41,7 @@ public class AbilityManager : MonoBehaviour
 
     void OnSpecialAttack()
     {
-        _animator.SetTrigger("AxeSpecial");
+        _specialAbility.Use();
     }
 
     void OnDashEvent()

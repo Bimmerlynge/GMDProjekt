@@ -68,7 +68,7 @@ public class PlayerInputController : MonoBehaviour
 
     private void SpecialAtk(InputAction.CallbackContext context)
     {
-        if (OnSpecialAttackEvent != null) OnSpecialAttackEvent.Invoke();
+        if (OnSpecialAttackEvent != null) OnSpecialAttackEvent();
     }
 
     private void OnInteract(InputAction.CallbackContext context)
