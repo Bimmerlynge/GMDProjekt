@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
@@ -14,10 +16,15 @@ public class EnemyController : MonoBehaviour
     private Health _health;
     private Slider _healthBar;
 
+    private NavMeshAgent _agent;
+    private Transform _target;
+
     private void Awake()
     {
         _health = GetComponent<Health>();
         _healthBar = GetComponentInChildren<Slider>();
+        _agent = GetComponent<NavMeshAgent>();
+        _target = GameObject.Find("PlayerObject").transform;
     }
 
     private void Start()
@@ -25,6 +32,11 @@ public class EnemyController : MonoBehaviour
         UpdateHealthUI();
         Health.OnDamageTaken += UpdateHealthUI;
         EnemyCount++;
+    }
+
+    private void Update()
+    {
+        _agent.destination = _target.position;
     }
 
     private void OnDisable()
