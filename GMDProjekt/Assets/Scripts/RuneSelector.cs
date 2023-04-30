@@ -22,17 +22,14 @@ public class RuneSelector : MonoBehaviour
 
     public void SelectOption1()
     {
-        print("Selected option 1");
         FireRuneSelectedEvent();
     }
     public void SelectOption2()
     {
-        print("Selected option 2");
         FireRuneSelectedEvent();
     }
     public void SelectOption3()
     {
-        print("Selected option 3");
         FireRuneSelectedEvent();
     }
 

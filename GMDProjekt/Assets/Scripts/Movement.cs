@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Util;
+
 
 public class Movement : MonoBehaviour
 {
@@ -26,8 +26,14 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        PlayerInputManager.MoveEvent += HandleMoveInput;
+        PlayerInputController.MoveEvent += HandleMoveInput;
     }
+
+    private void OnDestroy()
+    {
+        PlayerInputController.MoveEvent -= HandleMoveInput;
+    }
+
     void FixedUpdate()
     {
         if (!_canMove) return;

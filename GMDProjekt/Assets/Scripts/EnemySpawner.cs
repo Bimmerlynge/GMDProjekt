@@ -1,37 +1,25 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int enemyCount = 10;
-    
-    public int EnemyCount
-    {
-        get => enemyCount;
-        set => enemyCount = value;
-    }
-    private void Start()
-    {
-        Invoke( "SpawnEnemies",3f);
-    }
 
-    private void SpawnEnemies()
+    [SerializeField]
+    private SpawnArea _spawnArea;
+
+    public void SpawnEnemies()
     {
         for (var i = 0; i < enemyCount; i++)
         {
-            Instantiate(enemyPrefab, GetRandomSpawn(), Quaternion.identity);
+            InstantiateEnemy(enemyPrefab);
         }
     }
 
-    private Vector3 GetRandomSpawn()
+    private void InstantiateEnemy(GameObject enemy)
     {
-        return new Vector3(
-            UnityEngine.Random.Range(-16, 16),
-            0.5f,
-            UnityEngine.Random.Range(0, 20)
-        );
+        Instantiate(enemy, _spawnArea.GetRandomSpawnLocation(), Quaternion.identity);
     }
 }

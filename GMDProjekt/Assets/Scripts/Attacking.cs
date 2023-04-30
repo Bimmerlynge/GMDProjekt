@@ -13,6 +13,11 @@ public class Attacking : MonoBehaviour
     private bool _isAttacking;
     private Rigidbody _rb;
 
+    private void Start()
+    {
+        
+    }
+
     private void Awake()
     {
         _movement = GetComponent<Movement>();
