@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityManager : MonoBehaviour
+public class AbilityController : MonoBehaviour
 {
     private DashAbility _dashAbility;
     private AttackAbility _attackAbility;
