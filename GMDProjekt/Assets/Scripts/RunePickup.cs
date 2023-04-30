@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Rune : MonoBehaviour, IInteractable
+public class RunePickup : MonoBehaviour, IInteractable
 {
     private UIManager _uiManager;
     private bool _canPickup;
@@ -13,7 +13,7 @@ public class Rune : MonoBehaviour, IInteractable
     {
         transform.position = new Vector3(0, 1, 10);
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-        PlayerInputManager.InteractEvent += OnInteract;
+        PlayerInputController.InteractEvent += OnInteract;
         RuneSelector.RuneSelectedEvent += OnRuneSelected;
     }
 
@@ -48,7 +48,7 @@ public class Rune : MonoBehaviour, IInteractable
 
     private void OnDestroy()
     {
-        PlayerInputManager.InteractEvent -= OnInteract;
+        PlayerInputController.InteractEvent -= OnInteract;
         RuneSelector.RuneSelectedEvent -= OnRuneSelected;
         _uiManager.SetInteractablePanel(false);
     }
