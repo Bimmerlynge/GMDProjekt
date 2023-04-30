@@ -20,28 +20,30 @@ public class AbilityManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerInputManager.PrimaryAttackEvent += OnPrimaryAttack;
-        PlayerInputManager.OnSpecialAttackEvent += OnSpecialAttack;
-        PlayerInputManager.DashEvent += OnDashEvent;
+        PlayerInputController.PrimaryAttackEvent += OnPrimaryAttack;
+        PlayerInputController.OnSpecialAttackEvent += OnSpecialAttack;
+        PlayerInputController.DashEvent += OnDashEvent;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInputController.PrimaryAttackEvent -= OnPrimaryAttack;
+        PlayerInputController.OnSpecialAttackEvent -= OnSpecialAttack;
+        PlayerInputController.DashEvent -= OnDashEvent;
     }
 
     void OnPrimaryAttack()
     {
-        
-        print("Attack");
         _attackAbility.Use();
     }
 
     void OnSpecialAttack()
     {
-        
-        print("AxeSpecial");
         _animator.SetTrigger("AxeSpecial");
     }
 
     void OnDashEvent()
     {
         _dashAbility.Use();
-        //_animator.SetTrigger("Dash");
     }
 }

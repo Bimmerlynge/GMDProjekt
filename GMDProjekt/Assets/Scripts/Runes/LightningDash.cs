@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Abilities;
 using UnityEngine;
 
 public class LightningDash : MonoBehaviour
@@ -8,27 +6,34 @@ public class LightningDash : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float damage;
     [SerializeField] private float radius;
-
-    [SerializeField] private ParticleSystem particleEffect;
-    [SerializeField] private Transform hitZone;
     
+    [SerializeField] private Transform hitZone;
+
+    private Particles _particles;
+    private Audio _audio;
+
+    public void Awake()
+    {
+        _particles = GetComponent<Particles>();
+        _audio = GetComponent<Audio>();
+    }
+
     private void Start()
     {
         DashAbility.DashEvent += ApplyEffect;
     }
 
-    private void ApplyEffect()
+    private void OnDestroy()
     {
-        StartParticleSystem();
-        var enemies = GetEnemiesInRange();
-        DamageEnemies(enemies);
+        DashAbility.DashEvent -= ApplyEffect;
     }
 
-    private void StartParticleSystem()
+    private void ApplyEffect()
     {
-        var emission = particleEffect.emission;
-        emission.enabled = true;
-        particleEffect.Play();
+        _audio.PlayClip();
+        _particles.StartParticleSystem();
+        var enemies = GetEnemiesInRange();
+        DamageEnemies(enemies);
     }
 
     private Collider[] GetEnemiesInRange()

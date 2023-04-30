@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Abilities.AttackAbility;
+using Abilities;
 using UnityEngine;
 
 public class AttackAbility : MonoBehaviour, IAbility
@@ -18,10 +16,10 @@ public class AttackAbility : MonoBehaviour, IAbility
     [SerializeField] private Transform hitZone;
     [SerializeField] private float hitRadius;
     
-    private AttackAnimation _animation;
+    private Anim _animation;
     private void Awake()
     {
-        _animation = GetComponentInChildren<AttackAnimation>();
+        _animation = GetComponent<Anim>();
     }
     private void Start()
     {

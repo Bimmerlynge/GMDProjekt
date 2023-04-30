@@ -26,8 +26,14 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        PlayerInputManager.MoveEvent += HandleMoveInput;
+        PlayerInputController.MoveEvent += HandleMoveInput;
     }
+
+    private void OnDestroy()
+    {
+        PlayerInputController.MoveEvent -= HandleMoveInput;
+    }
+
     void FixedUpdate()
     {
         if (!_canMove) return;

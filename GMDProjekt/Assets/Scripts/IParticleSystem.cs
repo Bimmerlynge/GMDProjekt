@@ -4,7 +4,6 @@ using UnityEngine;
 
 public interface IParticleSystem
 {
-    void Start();
     void StartParticleSystem();
     void StopParticleSystem();
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Abilities.Dash;
+using Abilities;
 using UnityEngine;
 
 public class DashAbility : MonoBehaviour, IAbility
@@ -22,14 +22,17 @@ public class DashAbility : MonoBehaviour, IAbility
     [SerializeField] private State currentState;
     [SerializeField] private int castRate;
 
-    private DashAnimation _animation;
-    private DashParticles _particles;
+    //private DashAnimation _animation;
+    //private DashParticles _particles;
+
+    private Anim _animation;
+    private Particles _particles;
 
     private void Awake()
     {
         _rb = GetComponentInParent<Rigidbody>();
-        _animation = GetComponent<DashAnimation>();
-        _particles = GetComponent<DashParticles>();
+        _animation = GetComponent<Anim>();
+        _particles = GetComponent<Particles>();
     }
 
     private void Start()
@@ -51,6 +54,7 @@ public class DashAbility : MonoBehaviour, IAbility
 
     private void ApplyForce()
     {
+        print("applying force");
         _rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
     }
 

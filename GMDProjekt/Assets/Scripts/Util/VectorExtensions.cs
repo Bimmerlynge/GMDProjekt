@@ -9,4 +9,14 @@ public static class VectorExtensions
         var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, -45, 0));
         return matrix.MultiplyPoint3x4(buffer);
     }
+
+    public static Vector3 GetRandomVector3(this Vector3 vector, float minX, float maxX, float minZ, float maxZ)
+    {
+        return new Vector3(
+            Random.Range(minX, maxX),
+            0.5f,
+            Random.Range(minZ, maxZ)
+        );
+    }
+    
 }

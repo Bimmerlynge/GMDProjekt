@@ -13,7 +13,7 @@ public class RunePickup : MonoBehaviour
     {
         transform.position = new Vector3(0, 1, 10);
         _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-        PlayerInputManager.InteractEvent += OnPickupItem;
+        PlayerInputController.InteractEvent += OnPickupItem;
         RuneSelector.RuneSelectedEvent += OnRuneSelected;
     }
 
@@ -38,6 +38,7 @@ public class RunePickup : MonoBehaviour
 
     private void OnPickupItem()
     {
+        if (!_canPickup) return;
         OpenRuneSelectionPanel();
     }
 
@@ -53,7 +54,7 @@ public class RunePickup : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInputManager.InteractEvent -= OnPickupItem;
+        PlayerInputController.InteractEvent -= OnPickupItem;
         RuneSelector.RuneSelectedEvent -= OnRuneSelected;
         _uiManager.SetInteractablePanel(false);
     }
