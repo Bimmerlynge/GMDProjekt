@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,11 +22,6 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         Invoke("InvokeStage", 3f);
@@ -43,6 +39,18 @@ public class SceneLoader : MonoBehaviour
         
     }
 
+    public void LoadFirstStage()
+    {
+        SceneManager.LoadScene("stage01");
+    }
 
+    public void LoadSettingsMenu()
+    {
+        
+    }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 }
