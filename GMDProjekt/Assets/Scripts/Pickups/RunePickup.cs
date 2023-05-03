@@ -17,7 +17,7 @@ public class RunePickup : MonoBehaviour, IInteractable
         RuneSelector.RuneSelectedEvent += OnRuneSelected;
     }
 
-    private void OnRuneSelected()
+    private void OnRuneSelected(RuneSO rune)
     {
         Destroy(gameObject);
     }
