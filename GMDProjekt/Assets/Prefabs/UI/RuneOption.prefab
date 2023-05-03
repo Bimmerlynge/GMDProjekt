@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 6851499985198100895}
   - component: {fileID: 6851499985198100894}
   - component: {fileID: 6851499985198100893}
+  - component: {fileID: -2904472697133429760}
   m_Layer: 5
   m_Name: RuneOption
   m_TagString: Untagged
@@ -274,6 +275,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-2904472697133429760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851499985198100891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febf385d68450b247978c8f5f3e83147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6851499986063919543
 GameObject:
   m_ObjectHideFlags: 0

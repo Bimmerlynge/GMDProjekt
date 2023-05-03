@@ -17,6 +17,15 @@ public class PlayerController : MonoBehaviour
         _movement = GetComponent<Movement>();
         //_weapon = GetComponent<WeaponManager>();
     }
+    
+    private void Start()
+    {
+        Movement.IsMovingEvent += SetMovingState;
+        
+    }
+
+    
+
 
     // Used by unity animation events
     void AbilityStarted()
@@ -34,10 +43,7 @@ public class PlayerController : MonoBehaviour
         Movement.IsMovingEvent -= SetMovingState;
     }
 
-    private void Start()
-    {
-        Movement.IsMovingEvent += SetMovingState;
-    }
+    
 
     private void SetMovingState(bool state)
     {

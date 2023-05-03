@@ -27,19 +27,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        DisablePanels();
         RuneSelector.RuneSelectedEvent += OnRuneSelected;
     }
-
-    private void DisablePanels()
-    {
-        gameHUD.SetActive(false);
-        interactablePanel.SetActive(false);
-        runeSelectionPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-    }
-
-    private void OnRuneSelected()
+    
+    private void OnRuneSelected(RuneSO rune)
     {
         runeSelectionPanel.SetActive(false);
     }
@@ -72,7 +63,10 @@ public class UIManager : MonoBehaviour
         settingsPanel.SetActive(state);
     }
 
-
+    private void OnDestroy()
+    {
+        RuneSelector.RuneSelectedEvent -= OnRuneSelected;
+    }
 }
     
 

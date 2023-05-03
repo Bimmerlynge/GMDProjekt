@@ -1,18 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RuneSelector : MonoBehaviour
+
+public class RuneSelectionPanel : MonoBehaviour
 {
     public delegate void RuneSelected();
 
     public static event RuneSelected RuneSelectedEvent;
-    
-    
+
+
     private void OnEnable()
     {
+        FreezeTime();
         RollOptions();
+    }
+
+    private void FreezeTime()
+    {
+        Time.timeScale = 0f;
     }
 
     private void RollOptions()

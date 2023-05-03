@@ -21,11 +21,6 @@ public class Wave : MonoBehaviour
         EnemyController.OnLastEnemyDefeated += OnLastEnemyKilled;
     }
 
-    private void Awake()
-    {
-        StageManager.OnBeginStage += SpawnNextWave;
-    }
-
     public void SpawnNextWave()
     {
         _spawner.SpawnEnemies();
@@ -54,6 +49,5 @@ public class Wave : MonoBehaviour
     private void OnDestroy()
     {
         EnemyController.OnLastEnemyDefeated -= OnLastEnemyKilled;
-        StageManager.OnBeginStage -= SpawnNextWave;
     }
 }

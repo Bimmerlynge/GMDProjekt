@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class LightningDash : MonoBehaviour
 {
-    [SerializeField] private float duration;
-    [SerializeField] private float damage;
+    [SerializeField] private RuneSO originalRune;
     [SerializeField] private float radius;
-    
     [SerializeField] private Transform hitZone;
-
+    
+    private RuneSO activeRune;
     private Particles _particles;
     private Audio _audio;
 
@@ -16,6 +15,8 @@ public class LightningDash : MonoBehaviour
     {
         _particles = GetComponent<Particles>();
         _audio = GetComponent<Audio>();
+        activeRune = Instantiate(originalRune);
+        gameObject.SetActive(false);
     }
 
     private void Start()
@@ -23,7 +24,7 @@ public class LightningDash : MonoBehaviour
         DashAbility.DashEvent += ApplyEffect;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         DashAbility.DashEvent -= ApplyEffect;
     }
@@ -45,7 +46,7 @@ public class LightningDash : MonoBehaviour
     {
         foreach (var c in enemies)
         {
-            c.gameObject.GetComponent<Health>().TakeDamage(damage);
+            c.gameObject.GetComponent<Health>().TakeDamage(activeRune.effectNumber);
         }
     }
 
