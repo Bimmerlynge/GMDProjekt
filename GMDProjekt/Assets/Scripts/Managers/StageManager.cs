@@ -28,14 +28,14 @@ public class StageManager : MonoBehaviour
     {
         Wave.OnFinalWaveCompleted += OnStageCompleted;
         
-        AudioManager.Instance.PlayMusic(_stageMusic);
+        
         
         Invoke("BeginStage", 3f);
     }
 
     public void BeginStage()
     {
-        if (OnBeginStage != null) OnBeginStage.Invoke();
+        if (OnBeginStage != null) OnBeginStage();
         else print("No one listening for OnBeingStage");
     }
 

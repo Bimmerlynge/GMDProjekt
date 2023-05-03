@@ -26,11 +26,6 @@ public class Wave : MonoBehaviour
         StageManager.OnBeginStage += SpawnNextWave;
     }
 
-    private void BeginWave()
-    {
-        Invoke("SpawnNextWave", 3f);
-    }
-
     public void SpawnNextWave()
     {
         _spawner.SpawnEnemies();

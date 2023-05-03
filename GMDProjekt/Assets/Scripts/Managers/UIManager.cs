@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameHUD;
     [SerializeField] private GameObject interactablePanel;
     [SerializeField] private GameObject runeSelectionPanel;
+    [SerializeField] private GameObject settingsPanel;
 
     private void Awake()
     {
@@ -26,9 +27,16 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        SetUIInteractableState(false);
-        runeSelectionPanel.SetActive(false);
+        DisablePanels();
         RuneSelector.RuneSelectedEvent += OnRuneSelected;
+    }
+
+    private void DisablePanels()
+    {
+        gameHUD.SetActive(false);
+        interactablePanel.SetActive(false);
+        runeSelectionPanel.SetActive(false);
+        settingsPanel.SetActive(false);
     }
 
     private void OnRuneSelected()
@@ -59,7 +67,12 @@ public class UIManager : MonoBehaviour
        textObject.text = text;
     }
 
-    
+    public void SetSettingsPanelState(bool state)
+    {
+        settingsPanel.SetActive(state);
+    }
+
+
 }
     
 
