@@ -6,32 +6,39 @@ using UnityEngine;
 
 public class StageOption : MonoBehaviour
 {
-   private UIManager _uiManager;
-   private bool _playerInRange;
+   
+   [SerializeField] private GameObject reward;
+   [SerializeField] private bool playerInRange;
 
+   public delegate void StageOptionAction(GameObject rewardPrefab);
+
+   public static event StageOptionAction OnStageOptionChosen;
+   
    private void Start()
    {
-      _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-      PlayerInputController.InteractEvent += OnStageOptionChosen;
+      PlayerInputController.InteractEvent += OnInteract;
    }
 
-   private void OnStageOptionChosen()
+   private void OnInteract()
    {
-      if (!_playerInRange) return;
-      SceneLoader.Instance.LoadNextScene();
+      if (!playerInRange) return;
+      if (OnStageOptionChosen != null) OnStageOptionChosen.Invoke(reward);
    }
+
 
    private void OnTriggerEnter(Collider other)
    {
-      if (!other.CompareTag("Player")) return;
-      _playerInRange = true;
-      _uiManager.SetInteractablePanel(true, "Proceed");
+      playerInRange = true;
    }
+   
 
    private void OnTriggerExit(Collider other)
    {
-      if (!other.CompareTag("Player")) return;
-      _playerInRange = false;
-      _uiManager.SetInteractablePanel(false);
+      playerInRange = false;
+   }
+
+   private void OnDestroy()
+   {
+      PlayerInputController.InteractEvent -= OnInteract;
    }
 }

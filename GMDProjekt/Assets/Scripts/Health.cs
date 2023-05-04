@@ -2,21 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public delegate void DamageTakenAction();
+    //public delegate void DamageTakenAction();
 
-    public static event DamageTakenAction OnDamageTaken;
-    
+    //public static event DamageTakenAction OnDamageTaken;
     [SerializeField] private float maxHealth = 50;
     
     [SerializeField]
     private float currentHealth;
 
+    public event Action<float> OnHealthChanged;
     private void Start()
     {
         currentHealth = maxHealth;
+        FireHealthChange();
+    }
+
+    private void FireHealthChange()
+    {
+        if (OnHealthChanged != null) OnHealthChanged.Invoke(GetHealthPercentage());
     }
 
     public void TakeDamage(float amount)
@@ -24,15 +31,22 @@ public class Health : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
             Die();
-        if (OnDamageTaken != null) OnDamageTaken();
+        FireHealthChange();
+       // if (OnDamageTaken != null) OnDamageTaken();
+    }
+
+    public void AddHealth(float amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
     }
 
     private void Die()
     {
         Destroy(gameObject);
     }
-
-    public float GetHealthPercentage()
+    
+    private float GetHealthPercentage()
     {
         return currentHealth / maxHealth;
     }

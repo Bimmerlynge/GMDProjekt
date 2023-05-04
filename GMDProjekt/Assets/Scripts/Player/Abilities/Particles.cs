@@ -6,7 +6,8 @@ namespace Abilities
     {
         [SerializeField]
         private ParticleSystem particleSystem;
-       
+        
+        
         public void StartParticleSystem()
         {
             var emission = particleSystem.emission;

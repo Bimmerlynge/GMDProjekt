@@ -15,6 +15,11 @@ namespace DefaultNamespace
         private void OnEnable()
         {
             LoadCurrentSettings();
+            FreezeTime();
+        }
+        private void FreezeTime()
+        {
+            Time.timeScale = 0f;
         }
 
         public void OnMusicValueChange(float value)
@@ -45,6 +50,7 @@ namespace DefaultNamespace
         private void OnDisable()
         {
             SaveSettings();
+            Time.timeScale = 1f;
         }
 
         private void SaveSettings()

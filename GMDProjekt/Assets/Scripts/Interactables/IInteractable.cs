@@ -6,5 +6,5 @@ public interface IInteractable
 {
     void OnTriggerEnter(Collider other);
     void OnTriggerExit(Collider other);
-    void OnInteract();
+    
 }

@@ -11,12 +11,7 @@ public class RuneSelector : MonoBehaviour
     
     [SerializeField] private RuneOption option1, option2, option3;
     [SerializeField] private RuneSO[] options = new RuneSO[3];
-
-    private void Awake()
-    {
-        gameObject.SetActive(false);
-    }
-
+    
 
     private void OnEnable()
     {

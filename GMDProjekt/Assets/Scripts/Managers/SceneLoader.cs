@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance;
-
+    [SerializeField]
+    private int currentStage = 0;
     private void Awake()
     {
         if (Instance == null)
@@ -34,20 +35,15 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadNextScene()
     {
-        var stageManager = StageManager.Instance;
-        SceneManager.LoadScene($"stage{(stageManager.CurrentStage < 9 ? "0" + ++stageManager.CurrentStage : ++stageManager.CurrentStage)}");
+        SceneManager.LoadScene($"stage{(currentStage < 9 ? "0" + ++currentStage : ++currentStage)}");
         
     }
 
     public void LoadFirstStage()
     {
-        SceneManager.LoadScene("stage01");
+        LoadNextScene();
     }
-
-    public void LoadSettingsMenu()
-    {
-        
-    }
+    
 
     private void OnDisable()
     {

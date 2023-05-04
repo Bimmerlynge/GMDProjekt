@@ -1,11 +1,12 @@
 using Abilities;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LightningDash : MonoBehaviour
 {
-    [SerializeField] private RuneSO originalRune;
+    [SerializeField] private RuneSO originalSO;
     [SerializeField] private float radius;
-    [SerializeField] private Transform hitZone;
+    
     
     private RuneSO activeRune;
     private Particles _particles;
@@ -15,11 +16,11 @@ public class LightningDash : MonoBehaviour
     {
         _particles = GetComponent<Particles>();
         _audio = GetComponent<Audio>();
-        activeRune = Instantiate(originalRune);
-        gameObject.SetActive(false);
+        activeRune = Instantiate(originalSO);
+        //gameObject.SetActive(false);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         DashAbility.DashEvent += ApplyEffect;
     }
@@ -39,7 +40,7 @@ public class LightningDash : MonoBehaviour
 
     private Collider[] GetEnemiesInRange()
     {
-        return Physics.OverlapSphere(hitZone.position, radius, 1 << LayerMask.NameToLayer("Enemy"));
+        return Physics.OverlapSphere(transform.position, radius, 1 << LayerMask.NameToLayer("Enemy"));
     }
 
     private void DamageEnemies(Collider[] enemies)
@@ -49,11 +50,5 @@ public class LightningDash : MonoBehaviour
             c.gameObject.GetComponent<Health>().TakeDamage(activeRune.effectNumber);
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.black;
-        var position = hitZone == null ? Vector3.zero : hitZone.position;
-        Gizmos.DrawWireSphere(position, radius);
-    }
+    
 }
