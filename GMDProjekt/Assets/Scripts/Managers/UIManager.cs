@@ -47,6 +47,11 @@ public class UIManager : MonoBehaviour
             SetUIInteractableText(text);
     }
 
+    public void OpenSettingsMenu()
+    {
+        settingsPanel.SetActive(true);
+    }
+
     public void SetGameHudPanel(bool state)
     {
         gameHUD.SetActive(state);

@@ -26,6 +26,10 @@ public class PlayerInputController : MonoBehaviour
 
     public static event Interact InteractEvent;
 
+    public delegate void EscapeAction();
+
+    public static event EscapeAction OnEscape;
+
     private void OnEnable()
     {
         _actions = new PlayerInputActions();
@@ -49,9 +53,14 @@ public class PlayerInputController : MonoBehaviour
         
         _actions.Player.Interact.Enable();
         _actions.Player.Interact.performed += OnInteract;
+        
+        _actions.Player.Esc.Enable();
+        _actions.Player.Esc.performed += Escape;
 
 
     }
+    
+    
 
     private void OnDisable()
     {
@@ -62,8 +71,14 @@ public class PlayerInputController : MonoBehaviour
         _actions.Player.PrimaryAtk.performed -= PrimAtk;
         _actions.Player.Special.performed -= SpecialAtk;
         _actions.Player.Interact.performed -= OnInteract;
+        _actions.Player.Esc.performed -= Escape;
         
         _actions.Disable();
+    }
+
+    private void Escape(InputAction.CallbackContext context)
+    {
+        if (OnEscape != null) OnEscape();
     }
 
     private void SpecialAtk(InputAction.CallbackContext context)

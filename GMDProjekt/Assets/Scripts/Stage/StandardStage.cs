@@ -18,6 +18,7 @@ public class StandardStage : MonoBehaviour, IStage
         StageOption.OnStageOptionChosen += OnNextStageOptionChosen;
         StageReward.OnRewardPickedUp += ActivateStageOptions;
         RuneManager.Instance.SetPlayerTransform();
+        PlayerInputController.OnEscape += OpenSettingsMenu;
         
         Invoke("BeginStage", 3f);
     }
@@ -26,6 +27,11 @@ public class StandardStage : MonoBehaviour, IStage
     public void BeginStage()
     {
         wave.SpawnNextWave();
+    }
+
+    private void OpenSettingsMenu()
+    {
+        UIManager.Instance.OpenSettingsMenu();
     }
 
     private void OnNextStageOptionChosen(GameObject rewardPrefab)
