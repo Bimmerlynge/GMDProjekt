@@ -1,4 +1,5 @@
 using System;
+using GameData;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,11 +21,6 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        LoadPlayerPrefs();
     }
 
     public void PlayEffect(AudioClip clip)
@@ -56,14 +52,4 @@ public class AudioManager : MonoBehaviour
     {
         _soundEffect.mute = value;
     }
-
-    private void LoadPlayerPrefs()
-    {
-        SetMusicVolume(PlayerPrefs.GetFloat("musicSlider"));
-        SetMusicMute(PlayerPrefs.GetInt("musicToggle") == 1);
-        SetEffectsVolume(PlayerPrefs.GetFloat("effectsSlider"));
-        SetEffectsMute(PlayerPrefs.GetInt("effectsToggle") == 1);
-    }
-
-
 }
