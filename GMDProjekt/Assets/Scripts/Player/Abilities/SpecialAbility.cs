@@ -18,6 +18,10 @@ public class SpecialAbility : MonoBehaviour
 
     [SerializeField] private float particleDelay;
 
+    public delegate void SpecialAction();
+
+    public static event SpecialAction SpecialEvent;
+    
     private Anim _animation;
     private Particles _particles;
     
@@ -37,6 +41,7 @@ public class SpecialAbility : MonoBehaviour
         if (currentState != State.Ready) return;
         _animation.Trigger();
         Invoke("Playparticles", particleDelay);
+        if (SpecialEvent != null) SpecialEvent();
         var enemies = GetEnemiesInRange();
         DamageEnemies(enemies);
         StartCoroutine("Cooldown");

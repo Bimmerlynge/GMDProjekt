@@ -11,8 +11,10 @@ public class RuneManager : MonoBehaviour
     [SerializeField] private List<GameObject> runeObjects;
     
     [SerializeField] private List<RuneSO> allRunes;
+    [SerializeField] private List<RuneSO> possibleRunes;
     [SerializeField] private List<RuneSO> activeRunes;
-    
+
+    private Transform playerObject;
     
 
     private void Awake()
@@ -31,7 +33,12 @@ public class RuneManager : MonoBehaviour
     private void Start()
     {
         RuneSelector.RuneSelectedEvent += SetRuneActive;
+        UpdatePossibleRunes();
+    }
 
+    private void Update()
+    {
+        transform.position = playerObject.position;
     }
 
     private void OnDestroy()
@@ -39,10 +46,16 @@ public class RuneManager : MonoBehaviour
         RuneSelector.RuneSelectedEvent -= SetRuneActive;
     }
 
+    public void SetPlayerTransform()
+    {
+        playerObject = GameObject.Find("PlayerObject").transform;
+    }
+
     private void SetRuneActive(RuneSO rune)
     {
         EnableRuneObject(rune);
         AddToActiveList(rune);
+        UpdatePossibleRunes();
     }
 
     private void EnableRuneObject(RuneSO rune)
@@ -71,22 +84,22 @@ public class RuneManager : MonoBehaviour
 
     public RuneSO GetRandomRune()
     {
-        var runeList = GetRuneRewardOptions();
+        var runeList = possibleRunes;
         var randomIndex = Random.Range(0, runeList.Count);
         var rune = runeList[randomIndex];
         runeList.Remove(rune);
         return rune;
     }
 
-    private List<RuneSO> GetRuneRewardOptions()
+    private void UpdatePossibleRunes()
     {
-        var toReturn = allRunes;
+        var newList = new List<RuneSO>(allRunes);
         foreach (var rune in activeRunes)
         {
-            toReturn.Remove(rune);
+            newList.Remove(rune);
         }
 
-        return toReturn;
+        possibleRunes = newList;
     }
 
 
