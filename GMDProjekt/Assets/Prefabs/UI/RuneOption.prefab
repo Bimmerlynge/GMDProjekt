@@ -205,7 +205,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8207547, g: 0.5049515, b: 0.07355818, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.8962264, g: 0.6232917, b: 0.26633143, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -287,6 +287,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febf385d68450b247978c8f5f3e83147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 0}
+  description: {fileID: 0}
+  rarity: {fileID: 0}
+  effect: {fileID: 0}
+  effectNumber: {fileID: 0}
 --- !u!1 &6851499986063919543
 GameObject:
   m_ObjectHideFlags: 0
