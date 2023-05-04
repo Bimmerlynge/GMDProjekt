@@ -1,6 +1,3 @@
-using System;
-using GameData;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour

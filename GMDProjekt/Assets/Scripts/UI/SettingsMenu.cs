@@ -18,6 +18,11 @@ namespace DefaultNamespace
             LoadCurrentSettings();
             FreezeTime();
         }
+        private void OnDisable()
+        {
+            SaveSettings();
+            Time.timeScale = 1f;
+        }
         private void FreezeTime()
         {
             Time.timeScale = 0f;
@@ -52,12 +57,6 @@ namespace DefaultNamespace
             UIManager.Instance.SetSettingsPanelState(false);
         }
 
-        private void OnDisable()
-        {
-            SaveSettings();
-            Time.timeScale = 1f;
-        }
-
         private void SaveSettings()
         {
             PlayerPrefsHandler.Instance.Save();
@@ -71,6 +70,5 @@ namespace DefaultNamespace
             effectsSlider.value = handler.EffectsVolume;
             effectsToggle.isOn = handler.EffectsMute;
         }
-
     }
 }

@@ -6,7 +6,6 @@ public class MainMenu : MonoBehaviour
     {
         SceneLoader.Instance.LoadNextScene();
     }
-
     public void Settings()
     {
         UIManager.Instance.SetSettingsPanelState(true);
