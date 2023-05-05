@@ -1,4 +1,5 @@
 using System;
+using GameData;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,11 @@ namespace DefaultNamespace
             LoadCurrentSettings();
             FreezeTime();
         }
+        private void OnDisable()
+        {
+            SaveSettings();
+            Time.timeScale = 1f;
+        }
         private void FreezeTime()
         {
             Time.timeScale = 0f;
@@ -24,21 +30,25 @@ namespace DefaultNamespace
 
         public void OnMusicValueChange(float value)
         {
+            PlayerPrefsHandler.Instance.MusicVolume = value;
             AudioManager.Instance.SetMusicVolume(value);
         }
 
         public void OnMusicMute(bool value)
         {
+            PlayerPrefsHandler.Instance.MusicMute = value;
             AudioManager.Instance.SetMusicMute(value);
         }
 
         public void OnEffectsValueChange(float value)
         {
+            PlayerPrefsHandler.Instance.EffectsVolume = value;
             AudioManager.Instance.SetEffectsVolume(value);
         }
 
         public void OnEffectsMute(bool value)
         {
+            PlayerPrefsHandler.Instance.EffectsMute = value;
             AudioManager.Instance.SetEffectsMute(value);
         }
 
@@ -47,27 +57,18 @@ namespace DefaultNamespace
             UIManager.Instance.SetSettingsPanelState(false);
         }
 
-        private void OnDisable()
-        {
-            SaveSettings();
-            Time.timeScale = 1f;
-        }
-
         private void SaveSettings()
         {
-            PlayerPrefs.SetFloat("musicSlider", musicSlider.value);
-            PlayerPrefs.SetInt("musicToggle", musicToggle.isOn ? 1 : 0);
-            PlayerPrefs.SetFloat("effectsSlider", effectsSlider.value);
-            PlayerPrefs.SetInt("effectsToggle", effectsToggle.isOn ? 1 : 0);
+            PlayerPrefsHandler.Instance.Save();
         }
 
         private void LoadCurrentSettings()
         {
-            musicSlider.value = PlayerPrefs.GetFloat("musicSlider");
-            musicToggle.isOn = PlayerPrefs.GetInt("musicToggle") == 1;
-            effectsSlider.value = PlayerPrefs.GetFloat("effectsSlider");
-            effectsToggle.isOn = PlayerPrefs.GetInt("effectsToggle") == 1;
+            var handler = PlayerPrefsHandler.Instance;
+            musicSlider.value = handler.MusicVolume;
+            musicToggle.isOn = handler.MusicMute;
+            effectsSlider.value = handler.EffectsVolume;
+            effectsToggle.isOn = handler.EffectsMute;
         }
-
     }
 }

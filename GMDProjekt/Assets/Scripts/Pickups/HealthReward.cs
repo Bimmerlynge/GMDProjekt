@@ -20,12 +20,12 @@ namespace DefaultNamespace.Pickups
             Destroy(gameObject);
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void OnTriggerEnter(Collider other)
         {
             playerInRange = true;
         }
 
-        private void OnTriggerExit(Collider other)
+        public void OnTriggerExit(Collider other)
         {
             playerInRange = false;
         }

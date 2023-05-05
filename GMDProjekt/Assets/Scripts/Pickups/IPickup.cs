@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public interface IPickup
+public interface IPickup : IInteractable
 {
     void ApplyReward();
 }

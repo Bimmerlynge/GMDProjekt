@@ -48,4 +48,9 @@ public class AbilityController : MonoBehaviour
     {
         _dashAbility.Use();
     }
+
+    public void TriggerSpecialDamage()
+    {
+        _specialAbility.TriggerDamage();
+    }
 }

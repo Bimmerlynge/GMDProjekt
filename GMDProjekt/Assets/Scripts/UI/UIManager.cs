@@ -25,36 +25,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void SetGameHudPanel(bool state)
     {
-        RuneSelector.RuneSelectedEvent += OnRuneSelected;
+        gameHUD.SetActive(state);
     }
     
-    private void OnRuneSelected(RuneSO rune)
+    public void SetInteractablePanel(bool state, string text = "")
     {
-        runeSelectionPanel.SetActive(false);
+        SetUIInteractableState(state);
+        if (state == false) return;
+        SetUIInteractableText(text);
     }
-
+    
     public void EnableRuneSelectionPanel()
     {
         runeSelectionPanel.SetActive(true);
     }
 
-    public void SetInteractablePanel(bool state, string text = "")
-    {
-        SetUIInteractableState(state);
-        if (!string.IsNullOrEmpty(text))
-            SetUIInteractableText(text);
-    }
-
     public void OpenSettingsMenu()
     {
         settingsPanel.SetActive(true);
-    }
-
-    public void SetGameHudPanel(bool state)
-    {
-        gameHUD.SetActive(state);
     }
 
     private void SetUIInteractableState(bool value)
@@ -71,11 +61,6 @@ public class UIManager : MonoBehaviour
     public void SetSettingsPanelState(bool state)
     {
         settingsPanel.SetActive(state);
-    }
-
-    private void OnDestroy()
-    {
-        RuneSelector.RuneSelectedEvent -= OnRuneSelected;
     }
 }
     
