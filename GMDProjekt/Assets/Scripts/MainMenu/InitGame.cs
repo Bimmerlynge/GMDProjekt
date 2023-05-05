@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Audio;
 using DefaultNamespace.Stage;
 using GameData;
 using UnityEngine;
@@ -7,17 +8,17 @@ using UnityEngine;
 
 public class InitGame : MonoBehaviour
 {
-    [SerializeField] private AudioClip music;
-    [SerializeField] private StageRewardSO stageReward;
-    [SerializeField] private GameObject rewardPrefab;
+    private Music music;
 
-   
+    private void Awake()
+    {
+        music = GetComponent<Music>();
+    }
 
     private void Start()
     {
         SetAudioManager();
         StartMusic();
-        InitStageReward();
     }
     
     private void SetAudioManager()
@@ -30,11 +31,7 @@ public class InitGame : MonoBehaviour
     }
     private void StartMusic()
     {
-        AudioManager.Instance.PlayMusic(music);
+        music.PlaySong();
     }
     
-    private void InitStageReward()
-    {
-        stageReward.prefab = rewardPrefab;
-    }
 }

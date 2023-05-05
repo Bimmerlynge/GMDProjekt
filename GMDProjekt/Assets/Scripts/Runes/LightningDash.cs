@@ -10,12 +10,12 @@ public class LightningDash : MonoBehaviour
     
     private RuneSO activeRune;
     private Particles _particles;
-    private Audio _audio;
+    private SoundEffect _audio;
 
     public void Awake()
     {
         _particles = GetComponent<Particles>();
-        _audio = GetComponent<Audio>();
+        _audio = GetComponent<SoundEffect>();
         activeRune = Instantiate(originalSO);
         //gameObject.SetActive(false);
     }

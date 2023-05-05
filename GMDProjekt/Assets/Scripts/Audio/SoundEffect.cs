@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Audio : MonoBehaviour
+public class SoundEffect : MonoBehaviour
 {
     [SerializeField] private AudioClip audioClip;
 

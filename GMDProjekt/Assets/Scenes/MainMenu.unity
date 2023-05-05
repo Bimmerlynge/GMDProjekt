@@ -1361,6 +1361,7 @@ GameObject:
   - component: {fileID: 2087706181}
   - component: {fileID: 2087706180}
   - component: {fileID: 2087706182}
+  - component: {fileID: 2087706183}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1407,10 +1408,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e744f552f54d5ca35e1e2cb97ef84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: 860ffdd013448fe42a0f5f9c06ec83c2, type: 3}
   stageReward: {fileID: 11400000, guid: 2e51c9736a852b949bb9b254811f706b, type: 2}
   rewardPrefab: {fileID: 3963479156093165747, guid: 16e127cd47e3c804ab8594aa08f2b71f,
     type: 3}
+--- !u!114 &2087706183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087706179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2bd865b7330448c9524154a1c4b9abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: 860ffdd013448fe42a0f5f9c06ec83c2, type: 3}
 --- !u!1001 &3276381194437605845
 PrefabInstance:
   m_ObjectHideFlags: 0
