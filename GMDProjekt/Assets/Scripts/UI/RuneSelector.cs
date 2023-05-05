@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RuneSelector : MonoBehaviour
 {
@@ -16,8 +17,15 @@ public class RuneSelector : MonoBehaviour
     private void OnEnable()
     {
         FreezeTime();
+        SetFirstSelected();
         RollOptions();
         UpdateUI();
+    }
+
+    private void SetFirstSelected()
+    {
+        var eventSystem = EventSystem.current;
+        eventSystem.SetSelectedGameObject(option1.gameObject);
     }
 
     private void FreezeTime()
@@ -28,9 +36,10 @@ public class RuneSelector : MonoBehaviour
 
     private void RollOptions()
     {
-        options[0] = RuneManager.Instance.GetRandomRune();
-        options[1] = RuneManager.Instance.GetRandomRune();
-        options[2] = RuneManager.Instance.GetRandomRune();
+        var runes = RuneManager.Instance.GetRandomRunes();
+        options[0] = runes[0];
+        options[1] = runes[1];
+        options[2] = runes[2];
     }
 
     private void UpdateUI()

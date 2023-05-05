@@ -1,6 +1,7 @@
 using System;
 using GameData;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace DefaultNamespace
@@ -15,9 +16,17 @@ namespace DefaultNamespace
 
         private void OnEnable()
         {
+            SetFirstSelected();
             LoadCurrentSettings();
             FreezeTime();
         }
+
+        private void SetFirstSelected()
+        {
+            var eventSystem = EventSystem.current;
+            eventSystem.SetSelectedGameObject(musicSlider.gameObject);
+        }
+
         private void OnDisable()
         {
             SaveSettings();
