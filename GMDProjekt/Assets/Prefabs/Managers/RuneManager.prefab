@@ -5005,6 +5005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3175493499159417819}
   - component: {fileID: 3175493499159417818}
+  - component: {fileID: -2222571267673708681}
   m_Layer: 0
   m_Name: RuneManager
   m_TagString: Untagged
@@ -5044,13 +5045,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runeObjects: []
-  allRunes:
-  - {fileID: 11400000, guid: 1ae855e8daedf1543b7e412a2f494b11, type: 2}
-  - {fileID: 11400000, guid: 3e994b4a9b6019f4194ffac522f6550a, type: 2}
-  - {fileID: 11400000, guid: 123f06efc723aa245ace6c97606f1d03, type: 2}
-  - {fileID: 11400000, guid: a438267234ae1e34db62b25639c017db, type: 2}
-  - {fileID: 11400000, guid: 9f86ae92ffd9bec458ca37e835dcd388, type: 2}
   activeRunes: []
+--- !u!114 &-2222571267673708681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3175493499159417816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1029a1ebdadd4c03ab197a57cf063a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allRunes:
+  - {fileID: 11400000, guid: 3e994b4a9b6019f4194ffac522f6550a, type: 2}
+  - {fileID: 11400000, guid: 1ae855e8daedf1543b7e412a2f494b11, type: 2}
+  - {fileID: 11400000, guid: 9f86ae92ffd9bec458ca37e835dcd388, type: 2}
+  - {fileID: 11400000, guid: a438267234ae1e34db62b25639c017db, type: 2}
+  - {fileID: 11400000, guid: 123f06efc723aa245ace6c97606f1d03, type: 2}
+  currentPool: []
 --- !u!1 &3175493499601122521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5102,7 +5116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalSO: {fileID: 11400000, guid: 1ae855e8daedf1543b7e412a2f494b11, type: 2}
   radius: 3
-  hitZone: {fileID: 0}
 --- !u!114 &3175493499601122525
 MonoBehaviour:
   m_ObjectHideFlags: 0
