@@ -10,13 +10,11 @@ public class Spider : MonoBehaviour
     [SerializeField] private GameObject spiderSpawn;
     [SerializeField] private int amount;
 
-
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (!GameStateHandler.Instance.IsSpawnSafe) return;
         SpawnMinions();
     }
-
 
     private void SpawnMinions()
     {

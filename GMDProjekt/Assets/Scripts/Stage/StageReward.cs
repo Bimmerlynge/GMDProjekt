@@ -12,14 +12,10 @@ public class StageReward : MonoBehaviour
     private GameObject instantiatedObj;
     public void Instantiate()
     {
-        Invoke("InstantiateReward", 1f);
-    }
-
-    private void InstantiateReward()
-    {
         instantiatedObj = Instantiate(stageReward.Prefab, new Vector3(0, 1, 10), Quaternion.identity);
         StartCoroutine(WaitForRewardPickup());
     }
+    
     private IEnumerator WaitForRewardPickup()
     {
         while (instantiatedObj != null)
