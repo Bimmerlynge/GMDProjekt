@@ -1,29 +1,29 @@
-using System;
+using DefaultNamespace.Stage;
 using UnityEngine;
 
 public class StandardStage : MonoBehaviour, IStage
 {
-    [SerializeField] private Wave wave;
-    [SerializeField] private StageReward reward;
-    [SerializeField] private StageOption option1, option2;
+    private Wave wave;
+    private StageReward reward;
+    private StageOptions options;
 
     private void Awake()
     {
+        reward = GetComponent<StageReward>();
+        wave = GetComponent<Wave>();
+        options = GetComponent<StageOptions>();
         UIManager.Instance.SetGameHudPanel(true);
     }
 
     public void Start()
     {
         Wave.OnFinalWaveCompleted += SpawnReward;
-        StageOption.OnStageOptionChosen += OnNextStageOptionChosen;
         StageReward.OnRewardPickedUp += ActivateStageOptions;
-        RuneManager.Instance.SetPlayerTransform();
         PlayerInputController.OnEscape += OpenSettingsMenu;
         
         Invoke("BeginStage", 3f);
     }
     
-
     public void BeginStage()
     {
         wave.SpawnNextWave();
@@ -33,35 +33,21 @@ public class StandardStage : MonoBehaviour, IStage
     {
         UIManager.Instance.OpenSettingsMenu();
     }
-
-    private void OnNextStageOptionChosen(GameObject rewardPrefab)
-    {
-        print("OnNeXtStage");
-        reward.SetCurrentStageReward(rewardPrefab);
-        SceneLoader.Instance.LoadNextScene();
-    }
     
-
     private void SpawnReward()
     {
-        print("spawn reward");
         reward.Instantiate();
     }
     
-
     private void ActivateStageOptions()
     {
-        print("activateStageoptiosn");
-        option1.GetComponentInChildren<BoxCollider>().enabled = true;
-        option2.GetComponentInChildren<BoxCollider>().enabled = true;
+        options.EnableOptions();
     }
-
-
-
+    
     private void OnDestroy()
     {
         Wave.OnFinalWaveCompleted -= SpawnReward;
-        StageOption.OnStageOptionChosen -= OnNextStageOptionChosen;
         StageReward.OnRewardPickedUp -= ActivateStageOptions;
+        PlayerInputController.OnEscape -= OpenSettingsMenu;
     }
 }

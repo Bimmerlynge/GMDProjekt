@@ -6,7 +6,6 @@ using UnityEngine;
 public class RuneReward : MonoBehaviour, IPickup
 {
     [SerializeField] private bool playerInRange;
-    [SerializeField] private bool canTake;
 
     private void Start()
     {
@@ -15,7 +14,7 @@ public class RuneReward : MonoBehaviour, IPickup
 
     public void ApplyReward()
     {
-        if (!canTake) return;
+        if (!playerInRange) return;
         OpenRuneSelector();
         Destroy(gameObject);
     }
@@ -25,14 +24,14 @@ public class RuneReward : MonoBehaviour, IPickup
         UIManager.Instance.EnableRuneSelectionPanel();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        canTake = true;
+        playerInRange = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
-        canTake = false;
+        playerInRange = false;
     }
 
     private void OnDestroy()

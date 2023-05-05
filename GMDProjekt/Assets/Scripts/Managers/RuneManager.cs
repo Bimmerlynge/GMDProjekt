@@ -46,9 +46,9 @@ public class RuneManager : MonoBehaviour
         RuneSelector.RuneSelectedEvent -= SetRuneActive;
     }
 
-    public void SetPlayerTransform()
+    public void SetPlayerTransform(Transform player)
     {
-        playerObject = GameObject.Find("PlayerObject").transform;
+        playerObject = player;
     }
 
     private void SetRuneActive(RuneSO rune)

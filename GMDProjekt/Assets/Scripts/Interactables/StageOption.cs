@@ -1,17 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using GameData;
 using UnityEngine;
 
 public class StageOption : MonoBehaviour
 {
    
    [SerializeField] private GameObject reward;
+   [SerializeField] private StageRewardData rewardData;
    [SerializeField] private bool playerInRange;
 
-   public delegate void StageOptionAction(GameObject rewardPrefab);
-
+   public delegate void StageOptionAction();
    public static event StageOptionAction OnStageOptionChosen;
    
    private void Start()
@@ -22,7 +19,18 @@ public class StageOption : MonoBehaviour
    private void OnInteract()
    {
       if (!playerInRange) return;
-      if (OnStageOptionChosen != null) OnStageOptionChosen.Invoke(reward);
+      SetStageRewardData();
+      NotifyListeners();
+   }
+
+   private void SetStageRewardData()
+   {
+      rewardData.SetCurrentPrefab(reward);
+   }
+
+   private void NotifyListeners()
+   {
+      if (OnStageOptionChosen != null) OnStageOptionChosen();
    }
 
 

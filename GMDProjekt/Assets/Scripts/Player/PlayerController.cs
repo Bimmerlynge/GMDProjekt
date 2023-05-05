@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     
     private void Start()
     {
+        RuneManager.Instance.SetPlayerTransform(transform);
         Movement.IsMovingEvent += SetMovingState;
         
         
