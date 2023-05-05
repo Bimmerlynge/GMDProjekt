@@ -11,13 +11,14 @@ public class PlayerController : MonoBehaviour
     private Attacking _attacking;
     private Health _health;
     private Animator _animator;
+    private AbilityController _abilityController;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _movement = GetComponent<Movement>();
         _health = GetComponent<Health>();
-        //_weapon = GetComponent<WeaponManager>();
+        _abilityController = GetComponentInChildren<AbilityController>();
         _health.OnHealthChanged += UpdateHealthUI;
     }
     
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviour
     void AbilityEnded()
     {
         _movement.enabled = true;
+    }
+    // Used by unity animation events
+    void AxeSpecialTrigger()
+    {
+        _abilityController.TriggerSpecialDamage();
     }
 
     private void OnDestroy()

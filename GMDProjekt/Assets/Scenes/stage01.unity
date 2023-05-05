@@ -991,6 +991,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8116087669535041988, guid: 82712fe37b0cc7a4696f15fef62b3bba,
+        type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116087669535041988, guid: 82712fe37b0cc7a4696f15fef62b3bba,
+        type: 3}
+      propertyPath: CollisionModule.m_Planes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82712fe37b0cc7a4696f15fef62b3bba, type: 3}
 --- !u!1001 &3175493498253417601

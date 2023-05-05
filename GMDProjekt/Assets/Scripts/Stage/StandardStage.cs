@@ -12,7 +12,7 @@ public class StandardStage : MonoBehaviour, IStage
         reward = GetComponent<StageReward>();
         wave = GetComponent<Wave>();
         options = GetComponent<StageOptions>();
-        UIManager.Instance.SetGameHudPanel(true);
+        
     }
 
     public void Start()
@@ -20,6 +20,7 @@ public class StandardStage : MonoBehaviour, IStage
         Wave.OnFinalWaveCompleted += SpawnReward;
         StageReward.OnRewardPickedUp += ActivateStageOptions;
         PlayerInputController.OnEscape += OpenSettingsMenu;
+        UIManager.Instance.SetGameHudPanel(true);
         
         Invoke("BeginStage", 3f);
     }

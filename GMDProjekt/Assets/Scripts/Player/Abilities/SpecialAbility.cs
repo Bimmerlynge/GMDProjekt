@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Abilities;
@@ -41,9 +42,6 @@ public class SpecialAbility : MonoBehaviour
         if (currentState != State.Ready) return;
         _animation.Trigger();
         Invoke("Playparticles", particleDelay);
-        if (SpecialEvent != null) SpecialEvent();
-        var enemies = GetEnemiesInRange();
-        DamageEnemies(enemies);
         StartCoroutine("Cooldown");
     }
 
@@ -58,7 +56,14 @@ public class SpecialAbility : MonoBehaviour
         yield return new WaitForSeconds(1.0f / castRate);
         ResetCooldown();
     }
-    
+
+    public void TriggerDamage()
+    {
+        if (SpecialEvent != null) SpecialEvent();
+        var enemies = GetEnemiesInRange();
+        DamageEnemies(enemies);
+    }
+
     public void ResetCooldown()
     {
         currentState = State.Ready;
@@ -75,12 +80,5 @@ public class SpecialAbility : MonoBehaviour
         {
             c.gameObject.GetComponent<Health>().TakeDamage(damage);
         }
-    }
-    
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.black;
-        var position = transform.position == null ? Vector3.zero : transform.position;
-        Gizmos.DrawWireSphere(position, abilityRadius);
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using DefaultNamespace.Interactables;
 using UnityEngine;
 
 
