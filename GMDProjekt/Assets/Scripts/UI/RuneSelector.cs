@@ -56,6 +56,7 @@ public class RuneSelector : MonoBehaviour
     private void FireRuneSelectedEvent(RuneSO rune)
     {
         if (RuneSelectedEvent != null) RuneSelectedEvent.Invoke(rune);
+        gameObject.SetActive(false);
     }
 
     private void OnDisable()
