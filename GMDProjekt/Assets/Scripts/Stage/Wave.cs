@@ -1,4 +1,5 @@
 using System;
+using DefaultNamespace;
 using UnityEngine;
 
 
@@ -23,6 +24,7 @@ public class Wave : MonoBehaviour
 
     public void SpawnNextWave()
     {
+        if (!GameStateHandler.Instance.IsSpawnSafe) return;
         _spawner.SpawnEnemies();
         _currentWave++;
         CheckIfLastWave();
@@ -38,7 +40,7 @@ public class Wave : MonoBehaviour
         if (_isFinalWave)
             FireLastWaveCompleted();
         else
-            Invoke("SpawnNextWave", 1f);
+            SpawnNextWave();
     }
 
     private void FireLastWaveCompleted()

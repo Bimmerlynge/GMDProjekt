@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using DefaultNamespace.Stage;
 using UnityEngine;
 
@@ -37,6 +38,7 @@ public class StandardStage : MonoBehaviour, IStage
     
     private void SpawnReward()
     {
+        if (!GameStateHandler.Instance.IsSpawnSafe) return;
         reward.Instantiate();
     }
     

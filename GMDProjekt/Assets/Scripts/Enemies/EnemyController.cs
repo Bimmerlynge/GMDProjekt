@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
     private static int EnemyCount = 0;
-    
     public delegate void LastEnemyDefeatedAction();
 
     public static event LastEnemyDefeatedAction OnLastEnemyDefeated;
@@ -38,7 +37,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        _agent.destination = _target.position;
+        //_agent.destination = _target.position;
     }                                                           
     
     private void OnDestroy()
