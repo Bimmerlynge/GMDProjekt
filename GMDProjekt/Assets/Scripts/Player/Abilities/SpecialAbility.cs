@@ -38,7 +38,6 @@ public class SpecialAbility : MonoBehaviour
     }
     public void Use()
     {
-        print("special called");
         if (currentState != State.Ready) return;
         _animation.Trigger();
         Invoke("Playparticles", particleDelay);

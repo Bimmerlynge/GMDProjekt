@@ -14,6 +14,9 @@ public class Health : MonoBehaviour
     [SerializeField]
     private float currentHealth;
 
+    public delegate void OnDeathAction(GameObject thisObj);
+
+    public static event OnDeathAction OnDeathEvent;
     public event Action<float> OnHealthChanged;
     private void Start()
     {
@@ -43,7 +46,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        if (OnDeathEvent != null) OnDeathEvent.Invoke(gameObject);
     }
     
     private float GetHealthPercentage()
