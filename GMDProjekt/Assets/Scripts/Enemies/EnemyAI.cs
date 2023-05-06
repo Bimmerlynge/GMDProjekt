@@ -12,7 +12,7 @@ namespace Enemies
         private Animator _anim;
         private Transform _player;
         [SerializeField] private string statename;
-        
+        [SerializeField] private string halløj;
         private IEnemyState _state;
         private NavMeshAgent _agent;
 
@@ -32,6 +32,7 @@ namespace Enemies
         {
             _state.Process();
             statename = _state.ToString();
+            //halløj = _anim.GetCurrentAnimatorStateInfo(0)
         }
 
         public void SetState(IEnemyState state)

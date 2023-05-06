@@ -15,7 +15,8 @@ namespace Enemies.Spider.States
         private Animator _anim;
         private Transform _player;
         private NavMeshAgent _agent;
-        
+
+        private bool animationPlayed;
         public SpiderAttack(EnemyAI context, GameObject enemy, Animator anim, Transform player, NavMeshAgent agent)
         {
             _context = context;
@@ -46,8 +47,18 @@ namespace Enemies.Spider.States
 
         public void Update()
         {
-            _nextState = new SpiderIdle(_context, _enemy, _anim, _player, _agent);
-            _stage = Event.Exit;
+            var animStateInfo = _anim.GetCurrentAnimatorStateInfo(0);
+            AnimationStartedFlagCheck(animStateInfo);
+
+            if (!animationPlayed) return;
+            if (AnimationDone(animStateInfo))
+            {
+                _nextState = new SpiderChase(_context, _enemy, _anim, _player, _agent);
+                _stage = Event.Exit;
+                return;
+            }
+
+            _stage = Event.Update;
         }
 
         public void Exit()
@@ -55,6 +66,16 @@ namespace Enemies.Spider.States
             _anim.ResetTrigger("attack");
             _stage = Event.Exit;
         }
-        
+
+        private void AnimationStartedFlagCheck(AnimatorStateInfo info)
+        {
+            if (info.IsName("attack")) animationPlayed = true;
+        }
+
+        private bool AnimationDone(AnimatorStateInfo info)
+        {
+            return animationPlayed && !info.IsName("attack");
+        }
+
     }
 }

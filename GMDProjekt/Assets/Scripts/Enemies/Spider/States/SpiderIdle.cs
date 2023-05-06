@@ -50,13 +50,6 @@ namespace Enemies.Spider.States
 
         public void Update()
         {
-            if (InAttackRange())
-            {
-                _nextState = new SpiderAttack(_context, _enemy, _anim, _player, _agent);
-                _stage = Event.Exit;
-                return;
-            }
-
             if (NoticedPlayer())
             {
                 _nextState = new SpiderChase(_context, _enemy, _anim, _player, _agent);
@@ -78,11 +71,6 @@ namespace Enemies.Spider.States
             var distance = Vector3.Distance(_enemy.transform.position, _player.position);
             return distance < _dist;
         }
-
-        private bool InAttackRange()
-        {
-            var distance = Vector3.Distance(_enemy.transform.position, _player.position);
-            return distance < 3f;
-        }
+        
     }
 }

@@ -906,6 +906,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7610347829667557755, guid: 55d731a6530cf4747ac7375d89f3cc2c,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55d731a6530cf4747ac7375d89f3cc2c, type: 3}
 --- !u!1 &1860507291842039983 stripped
@@ -926,6 +931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537c11f3d92745ffbb15803672ddb3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statename: 
+  "hall\xF8j": 
 --- !u!1001 &3175493498253417601
 PrefabInstance:
   m_ObjectHideFlags: 0
