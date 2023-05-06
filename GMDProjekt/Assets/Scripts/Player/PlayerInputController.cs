@@ -22,6 +22,10 @@ public class PlayerInputController : MonoBehaviour
     public delegate void SpecialAttackAction(); 
     public static event SpecialAttackAction OnSpecialAttackEvent;
 
+    public delegate void RageAction();
+
+    public static event RageAction OnRage;
+
     public delegate void Interact();
 
     public static event Interact InteractEvent;
@@ -48,6 +52,9 @@ public class PlayerInputController : MonoBehaviour
         _actions.Player.Special.Enable();
         _actions.Player.Special.performed += SpecialAtk;
         
+        _actions.Player.Rage.Enable();
+        _actions.Player.Rage.performed += Rage;
+        
         //_actions.Player.Aim.Enable();
         //_actions.Player.Aim.performed += Aim;
         
@@ -72,6 +79,7 @@ public class PlayerInputController : MonoBehaviour
         _actions.Player.Special.performed -= SpecialAtk;
         _actions.Player.Interact.performed -= OnInteract;
         _actions.Player.Esc.performed -= Escape;
+        _actions.Player.Rage.performed -= Rage;
         
         _actions.Disable();
     }
@@ -84,6 +92,11 @@ public class PlayerInputController : MonoBehaviour
     private void SpecialAtk(InputAction.CallbackContext context)
     {
         if (OnSpecialAttackEvent != null) OnSpecialAttackEvent();
+    }
+
+    private void Rage(InputAction.CallbackContext context)
+    {
+        if (OnRage != null) OnRage();
     }
 
     private void OnInteract(InputAction.CallbackContext context)

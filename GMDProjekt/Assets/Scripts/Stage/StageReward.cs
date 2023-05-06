@@ -22,7 +22,7 @@ public class StageReward : MonoBehaviour
         {
             yield return null;
         }
-
+        UIManager.Instance.SetInteractablePanel(false);
         if (OnRewardPickedUp != null) OnRewardPickedUp();
     }
 }

@@ -42,6 +42,7 @@ public class Health : MonoBehaviour
     {
         currentHealth += amount;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
+        FireHealthChange();
     }
 
     private void Die()

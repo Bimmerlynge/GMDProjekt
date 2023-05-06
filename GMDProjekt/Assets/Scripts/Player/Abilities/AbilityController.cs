@@ -8,6 +8,7 @@ public class AbilityController : MonoBehaviour
     private DashAbility _dashAbility;
     private AttackAbility _attackAbility;
     private SpecialAbility _specialAbility;
+    
     private Animator _animator;
     
 
@@ -25,6 +26,7 @@ public class AbilityController : MonoBehaviour
         PlayerInputController.PrimaryAttackEvent += OnPrimaryAttack;
         PlayerInputController.OnSpecialAttackEvent += OnSpecialAttack;
         PlayerInputController.DashEvent += OnDashEvent;
+        PlayerInputController.OnRage += OnRage;
     }
 
     private void OnDestroy()
@@ -32,6 +34,7 @@ public class AbilityController : MonoBehaviour
         PlayerInputController.PrimaryAttackEvent -= OnPrimaryAttack;
         PlayerInputController.OnSpecialAttackEvent -= OnSpecialAttack;
         PlayerInputController.DashEvent -= OnDashEvent;
+        PlayerInputController.OnRage -= OnRage;
     }
 
     void OnPrimaryAttack()
@@ -52,5 +55,10 @@ public class AbilityController : MonoBehaviour
     public void TriggerSpecialDamage()
     {
         _specialAbility.TriggerDamage();
+    }
+
+    public void OnRage()
+    {
+        _animator.SetTrigger("Rage");
     }
 }
