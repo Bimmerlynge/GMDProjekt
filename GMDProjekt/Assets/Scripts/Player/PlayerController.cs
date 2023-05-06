@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHealthUI(float value)
     {
-        print("player update health");
         UIManager.Instance.GetComponentInChildren<Slider>().value = value;
     }
 
