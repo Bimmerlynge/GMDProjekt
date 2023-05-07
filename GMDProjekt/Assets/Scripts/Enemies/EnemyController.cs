@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
        _health.OnHealthChanged += UpdateUI;
        Health.OnDeathEvent += OnDeath;
     }
-    
+
     private void Start()
     {
         EnemyCount++;
@@ -37,9 +37,9 @@ public class EnemyController : MonoBehaviour
         healthBar.value = value;
     }
 
-    private void Update()
+    public void Attack()
     {
-        //_agent.destination = _target.position;
+        print("Enemy attacked");
     }
 
     private void OnDeath(GameObject deadObj)
