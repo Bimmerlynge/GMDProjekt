@@ -21,6 +21,7 @@ public class DashAbility : MonoBehaviour, IAbility
     [SerializeField] private int currentStacks;
     [SerializeField] private State currentState;
     [SerializeField] private int castRate;
+    [SerializeField] private float duration = 1f;
 
     //private DashAnimation _animation;
     //private DashParticles _particles;
@@ -44,12 +45,28 @@ public class DashAbility : MonoBehaviour, IAbility
     public void Use()
     {
         if (currentState != State.Ready) return;
+
+
+        StartCoroutine(Dash());
+        StartCoroutine("Cooldown");
+    }
+
+    private IEnumerator Dash()
+    {
+        SetPlayerLayer("Dash");
         _animation.Trigger();
         _particles.StartParticleSystem();
         if (DashEvent != null) DashEvent();
         ApplyForce();
-        //_particles.StopParticleSystem();
-        StartCoroutine("Cooldown");
+
+        yield return new WaitForSeconds(duration);
+        SetPlayerLayer("Player");
+    }
+
+    private void SetPlayerLayer(string layerName)
+    {
+        int index = LayerMask.NameToLayer(layerName);
+        _rb.gameObject.layer = index;
     }
 
     private void ApplyForce()

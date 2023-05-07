@@ -27,6 +27,7 @@ namespace State.MeleeAI
         {
             if (animator == null) return;
             agent.isStopped = true;
+            animator.ResetTrigger("attack");
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo,

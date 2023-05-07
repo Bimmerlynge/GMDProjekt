@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6301508598635975705}
   - component: {fileID: 1855183397341946286}
   - component: {fileID: 3701454170937281051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 3672216369703965146}
   - component: {fileID: 7796508217301842088}
   - component: {fileID: 9001603424003459673}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 4229236925929926539}
   - component: {fileID: 5761844014900340007}
   - component: {fileID: 3457989921485202688}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4085767586266919452}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 5735296052342839304}
   - component: {fileID: 5926372910833228471}
   - component: {fileID: 3258927566916508908}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 4610935242229934280}
   - component: {fileID: 4088921066826677449}
   - component: {fileID: 239191104340252672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
