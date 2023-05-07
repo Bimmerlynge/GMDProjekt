@@ -19,7 +19,6 @@ public class StandardStage : MonoBehaviour, IStage
     public void Start()
     {
         Wave.OnFinalWaveCompleted += SpawnReward;
-        StageReward.OnRewardPickedUp += ActivateStageOptions;
         PlayerInputController.OnEscape += OpenSettingsMenu;
         UIManager.Instance.SetGameHudPanel(true);
         
@@ -41,16 +40,10 @@ public class StandardStage : MonoBehaviour, IStage
         if (!GameStateHandler.Instance.IsSpawnSafe) return;
         reward.Instantiate();
     }
-    
-    private void ActivateStageOptions()
-    {
-        options.EnableOptions();
-    }
-    
+
     private void OnDestroy()
     {
         Wave.OnFinalWaveCompleted -= SpawnReward;
-        StageReward.OnRewardPickedUp -= ActivateStageOptions;
         PlayerInputController.OnEscape -= OpenSettingsMenu;
     }
 }

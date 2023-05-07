@@ -7,46 +7,41 @@ namespace DefaultNamespace.Stage
 {
     public class StageOptions : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject option1, option2;
-        private BoxCollider trigger1, trigger2;
-        [SerializeField] private List<GameObject> optionTypes;
-        [SerializeField] private List<Transform> spawnPoints;
-        private List<GameObject> optionPool;
-
+        [SerializeField] private List<GameObject> optionPoints;
+        
+        [SerializeField] private List<GameObject> optionPool;
+        
         private void Awake()
         {
-            GenerateStageOptions();
-            SetCollidersRefs();
+            //GenerateStageOptions();
+            //SetCollidersRefs();
         }
 
         private void Start()
         {
             StageOption.OnStageOptionChosen += OnOptionChosen;
-            
-        }
+            StageReward.OnRewardPickedUp += GenerateStageOptions;
 
-        private void SetCollidersRefs()
+        }
+        private void OnDestroy()
         {
-            trigger1 = option1.GetComponentInChildren<BoxCollider>();
-            trigger2 = option2.GetComponentInChildren<BoxCollider>();
+            StageOption.OnStageOptionChosen -= OnOptionChosen;
+            StageReward.OnRewardPickedUp -= GenerateStageOptions;
         }
-
+        
         private void GenerateStageOptions()
         {
-            optionPool = new List<GameObject>(optionTypes);
-            foreach (var spawn in spawnPoints)
+            foreach (var point in optionPoints)
             {
-                SpawnOptionPrefab(spawn);
+                SpawnOptionPrefab(point.transform);
             }
-
         }
-
+        
         private void SpawnOptionPrefab(Transform spawnPoint)
         {
             var option = GetRandomOption();
-            print(option.name);
             Instantiate(option, spawnPoint);
+            option.GetComponentInChildren<BoxCollider>().enabled = true;
         }
 
 
@@ -58,20 +53,11 @@ namespace DefaultNamespace.Stage
             return toReturn;
         }
 
-        public void EnableOptions()
-        {
-            trigger1.enabled = true;
-            trigger2.enabled = true;
-        }
-
         private void OnOptionChosen()
         {
             SceneLoader.Instance.LoadNextScene();
         }
 
-        private void OnDestroy()
-        {
-            StageOption.OnStageOptionChosen -= OnOptionChosen;
-        }
+       
     }
 }

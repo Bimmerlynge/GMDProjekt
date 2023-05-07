@@ -12,13 +12,11 @@ public class AbilityController : MonoBehaviour
     private RageAbility _rageAbility;
 
     private Dictionary<AbilityType, Action> abilityMap;
-
-    private Animator _animator;
+    
     
     [SerializeField] private PlayerAbilityState _abilityState;
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
         _dashAbility = GetComponentInChildren<DashAbility>();
         _attackAbility = GetComponentInChildren<AttackAbility>();
         _specialAbility = GetComponentInChildren<SpecialAbility>();
@@ -37,8 +35,7 @@ public class AbilityController : MonoBehaviour
             { AbilityType.Rage, () => {} }
         };
     }
-
-
+    
     private void Start()
     {
         PlayerInputController.OnAbilityInput += HandleInput;

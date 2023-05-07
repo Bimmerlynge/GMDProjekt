@@ -9,7 +9,7 @@ using UnityEngine;
 public class InitGame : MonoBehaviour
 {
     private Music music;
-
+    [SerializeField] private StageRewardData stageRewardData;
     private void Awake()
     {
         music = GetComponent<Music>();
@@ -19,6 +19,7 @@ public class InitGame : MonoBehaviour
     {
         SetAudioManager();
         StartMusic();
+        InitStageRewardData();
     }
     
     private void SetAudioManager()
@@ -33,5 +34,10 @@ public class InitGame : MonoBehaviour
     {
         music.PlaySong();
     }
-    
+
+    private void InitStageRewardData()
+    {
+        stageRewardData.SetCurrentPrefab(null);
+    }
+
 }
