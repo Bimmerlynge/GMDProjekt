@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateHealthUI(float value)
     {
-        UIManager.Instance.GetComponentInChildren<Slider>().value = value;
+        UIManager.Instance.SetHealthBarValue(value);
     }
 
     // Used by unity animation events

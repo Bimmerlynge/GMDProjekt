@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 
     public void SetGameHudPanel(bool state)
     {
@@ -36,7 +38,7 @@ public class UIManager : MonoBehaviour
         if (state == false) return;
         SetUIInteractableText(text);
     }
-    
+
     public void EnableRuneSelectionPanel()
     {
         runeSelectionPanel.SetActive(true);
@@ -61,6 +63,11 @@ public class UIManager : MonoBehaviour
     public void SetSettingsPanelState(bool state)
     {
         settingsPanel.SetActive(state);
+    }
+
+    public void SetHealthBarValue(float value)
+    {
+        gameHUD.GetComponentInChildren<Slider>().value = value;
     }
 }
     
