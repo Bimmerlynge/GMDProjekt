@@ -1,18 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using GameData;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Health : MonoBehaviour
 {
-    //public delegate void DamageTakenAction();
-
-    //public static event DamageTakenAction OnDamageTaken;
     [SerializeField] private float maxHealth = 50;
-    
+    [SerializeField] private float currentHealth;
     [SerializeField]
-    private float currentHealth;
+    private HealthData _healthData;
 
     public delegate void OnDeathAction(GameObject thisObj);
 
@@ -20,8 +16,25 @@ public class Health : MonoBehaviour
     public event Action<float> OnHealthChanged;
     private void Start()
     {
-        currentHealth = maxHealth;
+        LoadHealth();
         FireHealthChange();
+    }
+
+    private void LoadHealth()
+    {
+        var data = _healthData.GetHealth(gameObject);
+        if ( data == -1)
+        {
+            UpdateHealthData(maxHealth);
+            return;
+        }
+        currentHealth = data;
+    }
+
+    private void UpdateHealthData(float value)
+    {
+        currentHealth = value;
+        _healthData.SetHealth(gameObject, value);
     }
 
     private void FireHealthChange()
@@ -31,22 +44,27 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        var newValue = currentHealth - amount;
+        UpdateHealthData(newValue);
         if (currentHealth <= 0)
             Die();
         FireHealthChange();
-       // if (OnDamageTaken != null) OnDamageTaken();
     }
 
     public void AddHealth(float amount)
     {
-        currentHealth += amount;
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        var newValue = currentHealth + amount;
+        UpdateHealthData(newValue);
+        if (currentHealth > maxHealth)
+        {
+            UpdateHealthData(maxHealth);
+        }
         FireHealthChange();
     }
 
     private void Die()
     {
+        _healthData.RemoveEntry(gameObject);
         if (OnDeathEvent != null) OnDeathEvent.Invoke(gameObject);
     }
     

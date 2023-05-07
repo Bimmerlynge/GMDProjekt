@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebaa0a78711b9a4e9a95652514bd756, type: 3}
   m_Name: Rage Of Thor
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 14a0f66a7be165c4ba476e3d7c40e390, type: 3}
   name: Rage Of Thor
+  type: 3
   description: 
   rarity: 0
   effect: 

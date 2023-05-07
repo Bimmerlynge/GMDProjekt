@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Abilities
@@ -14,6 +15,11 @@ namespace Abilities
         public void Trigger()
         {
             _animator.SetTrigger(triggerName);
+        }
+
+        public void SetState(bool value)
+        {
+            _animator.SetBool(triggerName, value);
         }
     }
 }

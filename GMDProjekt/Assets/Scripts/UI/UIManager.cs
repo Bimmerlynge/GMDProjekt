@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +26,12 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
+    public void UpdateRunePanel(RuneSO rune)
+    {
+        var runePanel = gameHUD.GetComponentInChildren<RunePanel>();
+        runePanel.SetRuneIcon(rune);
+    }
 
     public void SetGameHudPanel(bool state)
     {

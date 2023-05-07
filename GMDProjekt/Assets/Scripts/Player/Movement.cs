@@ -12,36 +12,24 @@ public class Movement : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _moveDirection;
     private Vector3 _orientation;
-
-    private bool _canMove = true;
-    private bool _lockOrientation = false;
-
-    public delegate void IsMovingAction(bool state);
-    public static event IsMovingAction IsMovingEvent;
     
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
     }
-
-    private void Start()
-    {
-        PlayerInputController.MoveEvent += HandleMoveInput;
-    }
-
-    private void OnDestroy()
-    {
-        PlayerInputController.MoveEvent -= HandleMoveInput;
-    }
+    
 
     void FixedUpdate()
     {
-        if (!_canMove) return;
         Rotation();
         Move();
     }
     
-
+    public void SetMoveDirection(Vector2 input)
+    {
+        _moveDirection = input.GetIsometricVector3();
+        Orient();
+    }
     private void Rotation()
     {
         var lookRotation = Quaternion.LookRotation(_orientation, Vector3.up);
@@ -50,33 +38,16 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        var moveDelta = _moveDirection * (moveSpeed * Time.deltaTime);
-        _rb.MovePosition(transform.position + moveDelta);
+        var moveDelta = _moveDirection * moveSpeed;
+        _rb.velocity = moveDelta;
+      
     }
 
-    private void HandleMoveInput(Vector2 input)
-    {
-        if (IsMovingEvent != null)
-        {
-            IsMovingEvent(input != Vector2.zero);
-        }
-
-        SetMoveDirection(input);
-        SetOrientation();
-    }
-
-    private void SetOrientation()
+    private void Orient()
     {
         if (_moveDirection == Vector3.zero)
             _orientation = transform.forward;
         else
             _orientation = _moveDirection;
     }
-
-    private void SetMoveDirection(Vector2 input)
-    {
-        _moveDirection = input.GetIsometricVector3();
-    }
-    
-
 }

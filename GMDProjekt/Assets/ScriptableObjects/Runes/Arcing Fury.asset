@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebaa0a78711b9a4e9a95652514bd756, type: 3}
   m_Name: Arcing Fury
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 2456dd2824f5ec540830760922f5bac6, type: 3}
   name: Arcing Fury
   description: When hitting an enemy emit chain lightning to a nearby foe
   rarity: 1
   effect: Attack Damage
   effectNumber: 7
+  runeLvl: 0

@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebaa0a78711b9a4e9a95652514bd756, type: 3}
   m_Name: Thunder Slam
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 2b9c59422eac9d941996e9b1c8e88cfc, type: 3}
   name: Thunder Slam
+  type: 1
   description: Summon thicc lightning bolts on all nearby foes
   rarity: 2
   effect: Special Damage
   effectNumber: 21
+  runeLvl: 0

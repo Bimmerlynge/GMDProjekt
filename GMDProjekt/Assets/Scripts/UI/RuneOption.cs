@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RuneOption : MonoBehaviour
 {
+    [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI rarity;
@@ -13,6 +13,7 @@ public class RuneOption : MonoBehaviour
 
     public void SetData(RuneSO rune)
     {
+        icon.sprite = rune.icon;
         title.text = rune.name;
         description.text = rune.description;
         rarity.text = rune.rarity.ToString();

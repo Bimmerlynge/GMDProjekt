@@ -5525,6 +5525,7 @@ MonoBehaviour:
   currentStacks: 0
   currentState: 0
   castRate: 1
+  duration: 1
 --- !u!114 &4944851033953135606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12456,6 +12457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  _healthData: {fileID: 11400000, guid: dbba535b20a2ad44a8ef34f51e56e1ad, type: 2}
 --- !u!65 &8707447888017704854
 BoxCollider:
   m_ObjectHideFlags: 0

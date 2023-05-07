@@ -1,4 +1,5 @@
 using System;
+using Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -15,9 +16,11 @@ public class EnemyController : MonoBehaviour
     private Transform _target;
     private Slider healthBar;
     private Animator _animator;
+    private MeleeAttack _meleeAttack;
     
     private void Awake()
     {
+        _meleeAttack = GetComponent<MeleeAttack>();
         _animator = GetComponent<Animator>();
         _health = GetComponent<Health>();
         _agent = GetComponent<NavMeshAgent>();
@@ -39,7 +42,7 @@ public class EnemyController : MonoBehaviour
 
     public void Attack()
     {
-        print("Enemy attacked");
+        _meleeAttack.Use();
     }
 
     private void OnDeath(GameObject deadObj)
