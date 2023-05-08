@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebaa0a78711b9a4e9a95652514bd756, type: 3}
   m_Name: Storm Armor
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1458237dbb3c6d54f8fe9d39c0175d00, type: 3}
   name: Storm Armor
   type: 4
   description: Taking damage from an enemy has a chance to summon a bolt of lightning

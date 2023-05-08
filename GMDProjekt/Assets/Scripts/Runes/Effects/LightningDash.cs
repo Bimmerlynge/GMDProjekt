@@ -16,17 +16,18 @@ public class LightningDash : MonoBehaviour
     {
         _particles = GetComponent<Particles>();
         _audio = GetComponent<SoundEffect>();
-        activeRune = Instantiate(originalSO);
-        //gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
+        activeRune = Instantiate(originalSO);
+        RuneManager.Instance.AddToActiveList(activeRune);
         DashAbility.DashEvent += ApplyEffect;
     }
 
     private void OnDisable()
     {
+        RuneManager.Instance.RemoveFromActiveList(activeRune);
         DashAbility.DashEvent -= ApplyEffect;
     }
 

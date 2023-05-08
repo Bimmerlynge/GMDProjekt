@@ -731,6 +731,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2222571267673708681, guid: 7ca17da8046f02b4fb2d02a59f998a71,
+        type: 3}
+      propertyPath: allRunes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3175493499159417816, guid: 7ca17da8046f02b4fb2d02a59f998a71,
         type: 3}
       propertyPath: m_Name

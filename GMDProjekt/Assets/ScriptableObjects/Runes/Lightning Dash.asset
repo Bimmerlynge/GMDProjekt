@@ -19,4 +19,4 @@ MonoBehaviour:
   rarity: 0
   effect: Dash Damage
   effectNumber: 12
-  runeLvl: 0
+  runeLvl: 3
