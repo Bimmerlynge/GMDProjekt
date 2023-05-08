@@ -8,7 +8,7 @@ namespace Enemies.Melee
         [SerializeField] private GameObject spiderSpawn;
         [SerializeField] private int amount;
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             if (!GameStateHandler.Instance.IsSpawnSafe) return;
             SpawnMinions();

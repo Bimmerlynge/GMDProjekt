@@ -1,18 +1,23 @@
 using UnityEngine;
 
-namespace DefaultNamespace.Pickups
+namespace Interactables.Pickups
 {
-    public class HealthReward : MonoBehaviour, IPickup
+    public class HealthReward : MonoBehaviour, IInteractable
     {
         [SerializeField] private bool playerInRange;
         [SerializeField] private float amount = 20f;
         
-        private void Start()
+        public void Start()
         {
-            PlayerInputController.InteractEvent += ApplyReward;
+            PlayerInputController.InteractEvent += OnInteract;
+        }
+        
+        public void OnDestroy()
+        {
+            PlayerInputController.InteractEvent -= OnInteract;
         }
 
-        public void ApplyReward()
+        public void OnInteract()
         {
             if (!playerInRange) return;
             var playerHealth = GameObject.Find("PlayerObject").GetComponent<Health>();
@@ -28,11 +33,6 @@ namespace DefaultNamespace.Pickups
         public void OnTriggerExit(Collider other)
         {
             playerInRange = false;
-        }
-
-        private void OnDestroy()
-        {
-            PlayerInputController.InteractEvent -= ApplyReward;
         }
     }
 }

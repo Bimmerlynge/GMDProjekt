@@ -11,6 +11,5 @@ namespace GameData
             Ready,
             Busy
         }
-        
     }
 }

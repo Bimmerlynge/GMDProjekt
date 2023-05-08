@@ -1,5 +1,6 @@
 using System.Collections;
 using DefaultNamespace;
+using GameData;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

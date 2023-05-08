@@ -1,4 +1,4 @@
-namespace DefaultNamespace
+namespace GameData
 {
     public enum GameState
     {

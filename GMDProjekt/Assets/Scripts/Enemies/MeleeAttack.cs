@@ -8,15 +8,12 @@ namespace Enemies
         [SerializeField] private float radius;
         [SerializeField] private Transform hitCenter;
         [SerializeField] private float damage;
-
+    
+        // Unity animation event
         public void Attack()
         {
             var enemies = GetEnemiesInRange();
             DamageEnemies(enemies);
-        }
-        public void Use()
-        {
-            
         }
 
         private Collider[] GetEnemiesInRange()

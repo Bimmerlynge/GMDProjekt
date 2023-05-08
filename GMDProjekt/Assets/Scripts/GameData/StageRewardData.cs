@@ -1,4 +1,3 @@
-using DefaultNamespace.Stage;
 using UnityEngine;
 
 namespace GameData
