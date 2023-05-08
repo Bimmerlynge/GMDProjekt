@@ -9,11 +9,14 @@ namespace Enemies
         [SerializeField] private Transform hitCenter;
         [SerializeField] private float damage;
 
-
-        public void Use()
+        public void Attack()
         {
             var enemies = GetEnemiesInRange();
             DamageEnemies(enemies);
+        }
+        public void Use()
+        {
+            
         }
 
         private Collider[] GetEnemiesInRange()
@@ -27,14 +30,6 @@ namespace Enemies
             {
                 e.gameObject.GetComponent<Health>().TakeDamage(damage);
             }
-        }
-        
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.black;
-            var position = hitCenter == null ? Vector3.zero : hitCenter.position;
-            Gizmos.DrawWireSphere(position, radius);
         }
     }
 }

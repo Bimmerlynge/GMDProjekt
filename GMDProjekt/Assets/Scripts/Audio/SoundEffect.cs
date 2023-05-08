@@ -1,12 +1,14 @@
 using UnityEngine;
 
-
-public class SoundEffect : MonoBehaviour
+namespace Audio
 {
-    [SerializeField] private AudioClip audioClip;
-
-    public void PlayClip()
+    public class SoundEffect : MonoBehaviour
     {
-        AudioManager.Instance.PlayEffect(audioClip);
+        [SerializeField] private AudioClip audioClip;
+
+        public void PlayClip()
+        {
+            AudioManager.Instance.PlayEffect(audioClip);
+        }
     }
 }
