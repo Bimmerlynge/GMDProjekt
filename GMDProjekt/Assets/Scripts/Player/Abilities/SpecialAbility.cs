@@ -75,6 +75,7 @@ public class SpecialAbility : MonoBehaviour
 
     private void DamageEnemies(Collider[] enemies)
     {
+        UIManager.Instance.IncrementRage();
         foreach (var c in enemies)
         {
             c.gameObject.GetComponent<Health>().TakeDamage(damage);

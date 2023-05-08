@@ -7,34 +7,24 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 50;
     [SerializeField] private float currentHealth;
-    [SerializeField]
-    private HealthData _healthData;
 
+    public float CurrentHealth => currentHealth;
     public delegate void OnDeathAction(GameObject thisObj);
 
     public static event OnDeathAction OnDeathEvent;
     public event Action<float> OnHealthChanged;
+    
+
     private void Start()
     {
-        LoadHealth();
-        FireHealthChange();
+        if (currentHealth == 0)
+            SetHealth(maxHealth);
     }
 
-    private void LoadHealth()
-    {
-        var data = _healthData.GetHealth(gameObject);
-        if ( data == -1)
-        {
-            UpdateHealthData(maxHealth);
-            return;
-        }
-        currentHealth = data;
-    }
-
-    private void UpdateHealthData(float value)
+    public void SetHealth(float value)
     {
         currentHealth = value;
-        _healthData.SetHealth(gameObject, value);
+        FireHealthChange();
     }
 
     private void FireHealthChange()
@@ -45,26 +35,24 @@ public class Health : MonoBehaviour
     public void TakeDamage(float amount)
     {
         var newValue = currentHealth - amount;
-        UpdateHealthData(newValue);
+        SetHealth(newValue);
         if (currentHealth <= 0)
             Die();
-        FireHealthChange();
+        
     }
 
     public void AddHealth(float amount)
     {
         var newValue = currentHealth + amount;
-        UpdateHealthData(newValue);
+        SetHealth(newValue);
         if (currentHealth > maxHealth)
         {
-            UpdateHealthData(maxHealth);
+            SetHealth(maxHealth);
         }
-        FireHealthChange();
     }
 
     private void Die()
     {
-        _healthData.RemoveEntry(gameObject);
         if (OnDeathEvent != null) OnDeathEvent.Invoke(gameObject);
     }
     

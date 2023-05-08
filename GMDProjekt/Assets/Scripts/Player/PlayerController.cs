@@ -1,12 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
 using GameData;
-using State;
-using State.Player;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInputController _input;
 
     [SerializeField] private PlayerAbilityState _abilityState;
+    [SerializeField] private HealthData healthData;
+
     private void Awake()
     {
         _input = GetComponent<PlayerInputController>();
@@ -26,12 +22,33 @@ public class PlayerController : MonoBehaviour
         _health = GetComponent<Health>();
         _abilityController = GetComponentInChildren<AbilityController>();
         _health.OnHealthChanged += UpdateHealthUI;
+        Health.OnDeathEvent += HandleDeath;
     }
     
+    private void OnDestroy()
+    {
+        RuneManager.Instance.SetPlayerTransform(null);
+        healthData.Value = _health.CurrentHealth;
+        _health.OnHealthChanged -= UpdateHealthUI;
+        Health.OnDeathEvent -= HandleDeath;
+    }
+    
+
+    private void OnEnable()
+    {
+        LoadHealth();
+    }
+
     private void Start()
     {
         RuneManager.Instance.SetPlayerTransform(transform);
-        //Movement.IsMovingEvent += SetMovingState;
+        
+    }
+
+    private void LoadHealth()
+    {
+        var data = healthData.Value;
+        if (data > 0f) _health.SetHealth(data);
     }
 
     private void Update()
@@ -59,6 +76,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateHealthUI(float value)
     {
         UIManager.Instance.SetHealthBarValue(value);
+        healthData.Value = _health.CurrentHealth;
     }
     
     // Used by unity animation events
@@ -67,12 +85,19 @@ public class PlayerController : MonoBehaviour
         _abilityController.TriggerSpecialDamage();
     }
 
-    private void OnDestroy()
-    {
-        //Movement.IsMovingEvent -= SetMovingState;
-    }
-
     
+
+    private void HandleDeath(GameObject obj)
+    {
+        print("obj : " + obj);
+        if (!(obj == gameObject)) return;
+        if (obj == null) return;
+        if (_health.CurrentHealth <= 0f)
+            UIManager.Instance.OpenEndGameMenu();
+        else
+            Destroy(gameObject);
+        
+    }
 
     private void SetMovingState(bool state)
     {

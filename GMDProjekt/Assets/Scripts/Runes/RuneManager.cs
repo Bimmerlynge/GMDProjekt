@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using DefaultNamespace;
 using Packages.Rider.Editor.UnitTesting;
 using Runes;
 using UnityEngine;
@@ -36,16 +37,8 @@ public class RuneManager : MonoBehaviour
     private void Start()
     {
         RuneSelector.RuneSelectedEvent += SetRuneActive;
-        DashAbility.DashEvent += Test;
     }
-
-    private void Test()
-    {
-        if (activeRunes.Count > 0)
-        {
-            print(activeRunes[0].runeLvl);
-        }
-    }
+    
 
     private void OnDestroy()
     {
@@ -54,6 +47,7 @@ public class RuneManager : MonoBehaviour
 
     private void Update()
     {
+        if (playerObject == null) return;
         transform.position = playerObject.position;
     }
 
@@ -80,6 +74,7 @@ public class RuneManager : MonoBehaviour
 
     public void AddToActiveList(RuneSO rune)
     {
+        print("Adding " + rune.name + " to activelist");
         activeRunes.Add(rune);
         _runeRoller.UpdateRunePool(activeRunes);
     }

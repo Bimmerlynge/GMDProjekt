@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip clip)
     {
+        if (_music.isPlaying) return;
         _music.PlayOneShot(clip);
     }
 

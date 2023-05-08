@@ -2,7 +2,7 @@ using Abilities;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class LightningDash : MonoBehaviour
+public class LightningDash : MonoBehaviour, IRune
 {
     [SerializeField] private RuneSO originalSO;
     [SerializeField] private float radius;
@@ -18,20 +18,20 @@ public class LightningDash : MonoBehaviour
         _audio = GetComponent<SoundEffect>();
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         activeRune = Instantiate(originalSO);
         RuneManager.Instance.AddToActiveList(activeRune);
         DashAbility.DashEvent += ApplyEffect;
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         RuneManager.Instance.RemoveFromActiveList(activeRune);
         DashAbility.DashEvent -= ApplyEffect;
     }
 
-    private void ApplyEffect()
+    public void ApplyEffect()
     {
         _audio.PlayClip();
         _particles.StartParticleSystem();

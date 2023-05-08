@@ -31,10 +31,23 @@ namespace DefaultNamespace
         {
             SaveSettings();
             Time.timeScale = 1f;
+            GameStateHandler.Instance.StartTimer();
         }
         private void FreezeTime()
         {
             Time.timeScale = 0f;
+            GameStateHandler.Instance.StopTimer();
+        }
+
+        public void MainMenu()
+        {
+            gameObject.SetActive(false);
+            SceneLoader.Instance.LoadMainMenu();
+        }
+
+        public void ExitGame()
+        {
+            Application.Quit();
         }
 
         public void OnMusicValueChange(float value)

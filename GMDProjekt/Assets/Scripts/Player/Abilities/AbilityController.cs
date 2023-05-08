@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using GameData;
+using UI;
 using UnityEngine;
 
 public class AbilityController : MonoBehaviour
@@ -12,8 +13,8 @@ public class AbilityController : MonoBehaviour
     private RageAbility _rageAbility;
 
     private Dictionary<AbilityType, Action> abilityMap;
-    
-    
+
+    private bool _canRage;
     [SerializeField] private PlayerAbilityState _abilityState;
     private void Awake()
     {
@@ -29,30 +30,65 @@ public class AbilityController : MonoBehaviour
     {
         abilityMap = new Dictionary<AbilityType, Action>
         {
-            { AbilityType.Attack, () => _attackAbility.Use() },
-            { AbilityType.Special, () => _specialAbility.Use() },
-            { AbilityType.Dash, () => _dashAbility.Use() },
-            { AbilityType.Rage, () => {} }
+            { AbilityType.Attack, Attack },
+            { AbilityType.Special, Special },
+            { AbilityType.Dash, Dash },
+            { AbilityType.Rage, Rage }
         };
     }
     
     private void Start()
     {
         PlayerInputController.OnAbilityInput += HandleInput;
+        RageMeter.OnRageMeterFull += CanRage;
     }
     private void OnDestroy()
     {
         PlayerInputController.OnAbilityInput -= HandleInput;
+        RageMeter.OnRageMeterFull -= CanRage;
+    }
+
+    private void CanRage(bool value)
+    {
+        _canRage = value;
     }
 
     private void HandleInput(AbilityType type)
     {
-        _abilityState.currentState = PlayerAbilityState.AbilityState.Busy;
-
         if (abilityMap.TryGetValue(type, out var action))
         {
             action.Invoke();
         }
+    }
+
+    private void SetBusyState()
+    {
+        _abilityState.currentState = PlayerAbilityState.AbilityState.Busy;
+    }
+
+    private void Attack()
+    {
+        SetBusyState();
+        _attackAbility.Use();
+    }
+
+    private void Special()
+    {
+        SetBusyState();
+        _specialAbility.Use();
+    }
+
+    private void Dash()
+    {
+        SetBusyState();
+        _dashAbility.Use();
+    }
+
+    private void Rage()
+    {
+        if (!_canRage) return;
+        SetBusyState();
+        _rageAbility.Use();
     }
 
     public void AnimationFinished()

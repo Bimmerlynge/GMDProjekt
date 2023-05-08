@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
@@ -5,6 +6,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneLoader.Instance.LoadNextScene();
+        GameStateHandler.Instance.StartTimer();
     }
     public void Settings()
     {

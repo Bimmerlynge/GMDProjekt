@@ -1,9 +1,14 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Abilities;
 using UnityEngine;
 
 public class AttackAbility : MonoBehaviour, IAbility
 {
+    public delegate void AttackAction();
+
+    public static event AttackAction OnAttack;
     private enum State
     {
         Ready,
@@ -30,8 +35,14 @@ public class AttackAbility : MonoBehaviour, IAbility
         if (currentState != State.Ready) return;
         _animation.Trigger();
         var enemies = GetEnemiesInRange();
+        FireEvent();
         DamageEnemies(enemies);
         StartCoroutine("Cooldown");
+    }
+
+    private void FireEvent()
+    {
+        if (OnAttack != null) OnAttack();
     }
 
     private Collider[] GetEnemiesInRange()
@@ -41,6 +52,7 @@ public class AttackAbility : MonoBehaviour, IAbility
 
     private void DamageEnemies(Collider[] enemies)
     {
+        UIManager.Instance.IncrementRage();
         foreach (var e in enemies)
         {
             e.gameObject.GetComponent<Health>().TakeDamage(damage);

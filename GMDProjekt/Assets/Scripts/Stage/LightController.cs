@@ -11,12 +11,12 @@ namespace DefaultNamespace.Stage
         private float maxDistance = 7f;
         private void Awake()
         {
-            _player = GameObject.FindWithTag("Player").transform;
             _light = GetComponent<Light>();
         }
 
         private void Start()
         {
+            _player = GameObject.FindWithTag("Player").transform;
             StageReward.OnRewardPickedUp += EnableLight;
         }
 
