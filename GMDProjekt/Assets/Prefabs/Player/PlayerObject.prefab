@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e669bd8183d8a49832bbf42a0e6c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _abilityState: {fileID: 11400000, guid: 058d3ac7075a2c04e8175179b4480c63, type: 2}
+  abilityState: {fileID: 11400000, guid: 058d3ac7075a2c04e8175179b4480c63, type: 2}
   healthData: {fileID: 11400000, guid: dbba535b20a2ad44a8ef34f51e56e1ad, type: 2}
 --- !u!114 &8582682451475306463
 MonoBehaviour:
@@ -770,7 +770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed474b0a3c93d444b2942f30148ab14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1537558405710616274}
 --- !u!54 &6148556066277816788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -859,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4269fc62d274044bae11aad002cf5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _abilityState: {fileID: 11400000, guid: 058d3ac7075a2c04e8175179b4480c63, type: 2}
+  abilityState: {fileID: 11400000, guid: 058d3ac7075a2c04e8175179b4480c63, type: 2}
 --- !u!1 &3095499125059059716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4269fc62d274044bae11aad002cf5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _abilityState: {fileID: 0}
+  abilityState: {fileID: 0}
 --- !u!1 &4934112568515424758
 GameObject:
   m_ObjectHideFlags: 0
@@ -7207,11 +7206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashForce: 100
-  maxStacks: 2
-  currentStacks: 0
   currentState: 0
   castRate: 1
-  duration: 0.5
+  cooldown: 1
 --- !u!114 &3293915825570384742
 MonoBehaviour:
   m_ObjectHideFlags: 0

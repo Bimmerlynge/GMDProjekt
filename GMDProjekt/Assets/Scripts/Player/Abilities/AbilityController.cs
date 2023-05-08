@@ -16,6 +16,7 @@ namespace Player.Abilities
         private Dictionary<AbilityType, Action> abilityMap;
 
         private bool _canRage;
+        [SerializeField]
         private PlayerAbilityState abilityState;
         private void Awake()
         {
