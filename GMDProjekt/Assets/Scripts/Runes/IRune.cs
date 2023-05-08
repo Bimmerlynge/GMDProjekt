@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IRune
+namespace Runes
 {
-    void OnEnable();
-    void ApplyEffect();
-    void OnDisable();
+    public interface IRune
+    {
+        void OnEnable();
+        void ApplyEffect();
+        void OnDisable();
+    }
 }

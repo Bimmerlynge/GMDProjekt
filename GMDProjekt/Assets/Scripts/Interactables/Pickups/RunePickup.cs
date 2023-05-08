@@ -1,4 +1,6 @@
 using Managers;
+using Player;
+using UI;
 using UnityEngine;
 
 namespace Interactables.Pickups

@@ -1,5 +1,5 @@
-using DefaultNamespace.UI;
 using TMPro;
+using UI;
 using UnityEngine;
 
 namespace Managers

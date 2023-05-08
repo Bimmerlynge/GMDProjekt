@@ -1,50 +1,48 @@
-using DefaultNamespace;
-using DefaultNamespace.Stage;
 using Managers;
+using Player;
 using UnityEngine;
 
-public class StandardStage : MonoBehaviour, IStage
+namespace Stage
 {
-    private Wave wave;
-    private StageReward reward;
-    private StageOptions options;
-
-    private void Awake()
+    public class StandardStage : MonoBehaviour, IStage
     {
-        reward = GetComponent<StageReward>();
-        wave = GetComponent<Wave>();
-        options = GetComponent<StageOptions>();
+        private Wave wave;
+        private StageReward reward;
+
+        private void Awake()
+        {
+            reward = GetComponent<StageReward>();
+            wave = GetComponent<Wave>();
+        }
+
+        public void Start()
+        {
+            Wave.OnFinalWaveCompleted += SpawnReward;
+            PlayerInputController.OnEscape += OpenSettingsMenu;
+            UIManager.Instance.SetGameHudPanel(true);
         
-    }
-
-    public void Start()
-    {
-        Wave.OnFinalWaveCompleted += SpawnReward;
-        PlayerInputController.OnEscape += OpenSettingsMenu;
-        UIManager.Instance.SetGameHudPanel(true);
-        
-        Invoke("BeginStage", 3f);
-    }
+            Invoke("BeginStage", 3f);
+        }
+        private void OnDestroy()
+        {
+            Wave.OnFinalWaveCompleted -= SpawnReward;
+            PlayerInputController.OnEscape -= OpenSettingsMenu;
+        }
     
-    public void BeginStage()
-    {
-        wave.SpawnNextWave();
-    }
+        public void BeginStage()
+        {
+            wave.SpawnNextWave();
+        }
 
-    private void OpenSettingsMenu()
-    {
-        UIManager.Instance.OpenSettingsMenu();
-    }
+        private void OpenSettingsMenu()
+        {
+            UIManager.Instance.OpenSettingsMenu();
+        }
     
-    private void SpawnReward()
-    {
-        if (!GameStateHandler.Instance.IsSpawnSafe) return;
-        reward.Instantiate();
-    }
-
-    private void OnDestroy()
-    {
-        Wave.OnFinalWaveCompleted -= SpawnReward;
-        PlayerInputController.OnEscape -= OpenSettingsMenu;
+        private void SpawnReward()
+        {
+            if (!GameStateHandler.Instance.IsSpawnSafe) return;
+            reward.Instantiate();
+        }
     }
 }

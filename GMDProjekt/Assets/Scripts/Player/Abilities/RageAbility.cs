@@ -1,5 +1,5 @@
 using System.Collections;
-using Abilities;
+using Shared;
 using UnityEngine;
 
 namespace Player.Abilities

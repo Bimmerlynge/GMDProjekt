@@ -1,5 +1,4 @@
 using Audio;
-using DefaultNamespace;
 using GameData;
 using Managers;
 using UnityEngine;

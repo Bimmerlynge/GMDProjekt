@@ -1,9 +1,8 @@
-using System;
 using Player.Abilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DefaultNamespace.UI
+namespace UI
 {
     public class GameHUD : MonoBehaviour
     {

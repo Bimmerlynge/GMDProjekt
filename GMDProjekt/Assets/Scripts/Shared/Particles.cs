@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abilities
+namespace Shared
 {
     public class Particles : MonoBehaviour, IParticleSystem
     {

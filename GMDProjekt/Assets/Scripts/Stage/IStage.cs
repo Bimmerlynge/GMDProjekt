@@ -1,5 +1,8 @@
-public interface IStage
+namespace Stage
 {
-    void Start();
-    void BeginStage();
+    public interface IStage
+    {
+        void Start();
+        void BeginStage();
+    }
 }

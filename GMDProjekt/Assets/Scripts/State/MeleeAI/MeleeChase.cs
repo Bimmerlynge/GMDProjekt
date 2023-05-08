@@ -44,7 +44,6 @@ namespace State.MeleeAI
 
         private bool InAttackRange()
         {
-            if (player == null) Destroy(enemy.gameObject);
             var distance = Vector3.Distance(enemy.position, player.position);
             return distance < attackRange;
         }

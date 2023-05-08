@@ -1,6 +1,6 @@
 using System.Collections;
-using Abilities;
 using Managers;
+using Shared;
 using UnityEngine;
 
 namespace Player.Abilities

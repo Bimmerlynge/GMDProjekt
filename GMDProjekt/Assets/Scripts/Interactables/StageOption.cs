@@ -1,4 +1,5 @@
 using GameData;
+using Player;
 using UnityEngine;
 
 namespace Interactables

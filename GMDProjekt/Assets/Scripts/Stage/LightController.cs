@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace.Stage
+namespace Stage
 {
     public class LightController : MonoBehaviour
     {

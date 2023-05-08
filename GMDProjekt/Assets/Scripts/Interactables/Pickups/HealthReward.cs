@@ -1,3 +1,5 @@
+using Player;
+using Shared;
 using UnityEngine;
 
 namespace Interactables.Pickups

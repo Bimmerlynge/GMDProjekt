@@ -8,20 +8,11 @@ namespace UI
     {   
         [SerializeField] private string interactText;
 
-        public void Start()
-        {
-            
-        }
+        public void Start() { }
 
-        public void OnDestroy()
-        {
-            
-        }
+        public void OnDestroy() { }
 
-        public void OnInteract()
-        {
-            
-        }
+        public void OnInteract() { }
 
         public void OnTriggerEnter(Collider other)
         {
@@ -35,8 +26,6 @@ namespace UI
 
         private void OnDisable()
         {
-            // var manager = UIManager.Instance;
-            // if (manager == null) return;
             UIManager.Instance.SetInteractablePanel(false);
         }
     }

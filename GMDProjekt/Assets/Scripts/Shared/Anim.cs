@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Abilities
+namespace Shared
 {
     public class Anim : MonoBehaviour, IAnimation
     {
