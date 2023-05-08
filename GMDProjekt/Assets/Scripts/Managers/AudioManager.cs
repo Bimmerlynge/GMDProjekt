@@ -1,7 +1,6 @@
-using DefaultNamespace;
 using UnityEngine;
 
-namespace Audio
+namespace Managers
 {
     public class AudioManager : Singleton<AudioManager>
     {

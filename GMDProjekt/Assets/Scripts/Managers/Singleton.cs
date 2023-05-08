@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Managers
 {
-    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
 
         public static T Instance;

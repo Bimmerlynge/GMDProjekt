@@ -1,48 +1,37 @@
 using System.Collections;
-using DefaultNamespace;
 using GameData;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace Managers
 {
-    public static SceneLoader Instance;
-    [SerializeField]
-    private int currentStage = 0;
-
-    private readonly float loadBuffer = 1f;
-    private void Awake()
+    public class SceneLoader : Singleton<SceneLoader>
     {
-        if (Instance == null)
+        [SerializeField]
+        private int currentStage = 0;
+
+        private readonly float loadBuffer = 1f;
+
+        public void LoadNextScene()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            var stageNumberString = $"{(currentStage < 9 ? "0" + ++currentStage : ++currentStage)}";
+            SceneManager.LoadScene($"stage{stageNumberString}");
+            StartCoroutine(LoadTime());
         }
-        else
+
+        public void LoadMainMenu()
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene("MainMenu");
+            currentStage = 0;
+            StartCoroutine(LoadTime());
         }
-    }
-    
-    public void LoadNextScene()
-    {
-        var stageNumberString = $"{(currentStage < 9 ? "0" + ++currentStage : ++currentStage)}";
-        SceneManager.LoadScene($"stage{stageNumberString}");
-        StartCoroutine(LoadTime());
-    }
 
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-        currentStage = 0;
-        StartCoroutine(LoadTime());
-    }
-
-    private IEnumerator LoadTime()
-    {
-        yield return new WaitForSeconds(loadBuffer);
-        GameStateHandler.Instance.CurrentState = GameState.Running;
-    }
+        private IEnumerator LoadTime()
+        {
+            yield return new WaitForSeconds(loadBuffer);
+            GameStateHandler.Instance.CurrentState = GameState.Running;
+        }
 
 
+    }
 }

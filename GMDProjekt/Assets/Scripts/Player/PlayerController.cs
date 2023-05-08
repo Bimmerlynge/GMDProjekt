@@ -1,9 +1,14 @@
 using GameData;
+using Managers;
 using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour
 {
+    public delegate void PlayerDeathAction();
+
+    public static event PlayerDeathAction OnPlayerDeath;
+
     private Movement _movement;
     private Attacking _attacking;
     private Health _health;
@@ -24,7 +29,7 @@ public class PlayerController : MonoBehaviour
         _health.OnHealthChanged += UpdateHealthUI;
         Health.OnDeathEvent += HandleDeath;
     }
-    
+
     private void OnDestroy()
     {
         RuneManager.Instance.SetPlayerTransform(null);
@@ -32,7 +37,7 @@ public class PlayerController : MonoBehaviour
         _health.OnHealthChanged -= UpdateHealthUI;
         Health.OnDeathEvent -= HandleDeath;
     }
-    
+
 
     private void OnEnable()
     {
@@ -42,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         RuneManager.Instance.SetPlayerTransform(transform);
-        
+
     }
 
     private void LoadHealth()
@@ -78,25 +83,29 @@ public class PlayerController : MonoBehaviour
         UIManager.Instance.SetHealthBarValue(value);
         healthData.Value = _health.CurrentHealth;
     }
-    
+
     // Used by unity animation events
     void AxeSpecialTrigger()
     {
         _abilityController.TriggerSpecialDamage();
     }
 
-    
+
 
     private void HandleDeath(GameObject obj)
     {
-        print("obj : " + obj);
         if (!(obj == gameObject)) return;
-        if (obj == null) return;
         if (_health.CurrentHealth <= 0f)
+        {
+            GameStateHandler.Instance.CurrentState = GameState.Quitting;
             UIManager.Instance.OpenEndGameMenu();
-        else
-            Destroy(gameObject);
-        
+            Invoke("Die", 0.5f);
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 
     private void SetMovingState(bool state)

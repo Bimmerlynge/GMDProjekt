@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField]
     private SpawnArea _spawnArea;
+
+    private void Start()
+    {
+        
+    }
 
     public void SpawnEnemies()
     {

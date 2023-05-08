@@ -1,28 +1,16 @@
-
 using GameData;
-using UnityEngine;
 
-namespace DefaultNamespace
+namespace Managers
 {
-    public class GameStateHandler : MonoBehaviour
+    public class GameStateHandler : Singleton<GameStateHandler>
     {
         private RunTimer timer;
-        public static GameStateHandler Instance;
-        private void Awake()
+
+        private void Start()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                CurrentState = GameState.MainMenu;
-                timer = GetComponent<RunTimer>();
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            timer = GetComponent<RunTimer>();
         }
-        
+
         public GameState CurrentState { get; set; }
 
         public bool IsSpawnSafe => CurrentState == GameState.Running;

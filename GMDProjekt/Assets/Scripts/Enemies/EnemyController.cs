@@ -28,6 +28,11 @@ namespace Enemies
                 _animator.SetTrigger("death");
                 Invoke("Die", 0.05f);
             }
+            else if (deadObj.tag.Equals("Player"))
+            {
+                _animator.SetTrigger("death");
+                Invoke("Die", 0.05f);
+            }
         }
 
         private void Die()
@@ -35,6 +40,7 @@ namespace Enemies
             Destroy(gameObject);
         }
         
+
         private void OnDestroy()
         {
             CheckIfLastEnemy();

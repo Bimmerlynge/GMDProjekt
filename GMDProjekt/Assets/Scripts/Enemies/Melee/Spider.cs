@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using Managers;
 using UnityEngine;
 
 namespace Enemies.Melee

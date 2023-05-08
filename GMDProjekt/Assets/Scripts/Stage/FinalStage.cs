@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
+using Managers;
 using UnityEngine;
 
 public class FinalStage : MonoBehaviour

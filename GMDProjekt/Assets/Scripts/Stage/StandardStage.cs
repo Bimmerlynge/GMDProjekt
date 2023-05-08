@@ -1,5 +1,6 @@
 using DefaultNamespace;
 using DefaultNamespace.Stage;
+using Managers;
 using UnityEngine;
 
 public class StandardStage : MonoBehaviour, IStage

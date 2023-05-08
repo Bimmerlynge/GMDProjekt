@@ -1,70 +1,68 @@
-using System;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+namespace Managers
 {
-    public static StageManager Instance;
-    public delegate void BeginStageAction();
-
-    public int CurrentStage { get; set; } = 1;
-    public static event BeginStageAction OnBeginStage;
-    [SerializeField] private GameObject currentReward;
-    [SerializeField] private AudioClip _stageMusic;
-
-    private void Awake()
+    public class StageManager : MonoBehaviour
     {
-        if (Instance == null)
+        public static StageManager Instance;
+        public delegate void BeginStageAction();
+
+        public int CurrentStage { get; set; } = 1;
+        public static event BeginStageAction OnBeginStage;
+        [SerializeField] private GameObject currentReward;
+
+        private void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
+
+        private void Start()
         {
-            Destroy(gameObject);
+            Wave.OnFinalWaveCompleted += OnStageCompleted;
+            Invoke("BeginStage", 3f);
         }
-    }
 
-    private void Start()
-    {
-        Wave.OnFinalWaveCompleted += OnStageCompleted;
-        
-        
-        
-        Invoke("BeginStage", 3f);
-    }
+        public void BeginStage()
+        {
+            if (OnBeginStage != null) OnBeginStage();
+            else print("No one listening for OnBeingStage");
+        }
 
-    public void BeginStage()
-    {
-        if (OnBeginStage != null) OnBeginStage();
-        else print("No one listening for OnBeingStage");
-    }
+        private void OnStageCompleted()
+        {
+            SpawnReward();
+            GenerateNextStageRewardOptions();
+        }
 
-    private void OnStageCompleted()
-    {
-        SpawnReward();
-        GenerateNextStageRewardOptions();
-    }
-
-    private void OnDisable()
-    {
-        Wave.OnFinalWaveCompleted -= OnStageCompleted;
-    }
+        private void OnDisable()
+        {
+            Wave.OnFinalWaveCompleted -= OnStageCompleted;
+        }
     
 
-    private void GenerateNextStageRewardOptions()
-    {
+        private void GenerateNextStageRewardOptions()
+        {
         
-    }
+        }
 
-    private void SpawnReward()
-    {
-        Invoke("InstantiateReward", 1f);
-    }
+        private void SpawnReward()
+        {
+            Invoke("InstantiateReward", 1f);
+        }
 
-    private void InstantiateReward()
-    {
-        Instantiate(currentReward, Vector3.zero, Quaternion.identity);
-    }
+        private void InstantiateReward()
+        {
+            Instantiate(currentReward, Vector3.zero, Quaternion.identity);
+        }
 
    
+    }
 }

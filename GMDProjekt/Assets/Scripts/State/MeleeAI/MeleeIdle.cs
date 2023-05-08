@@ -16,7 +16,7 @@ public class MeleeIdle : StateMachineBehaviour
         if (animator == null) return;
         player = GameObject.FindWithTag("Player").transform;
         enemy = animator.transform;
-
+        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -38,6 +38,7 @@ public class MeleeIdle : StateMachineBehaviour
 
     private bool PlayerInRange()
     {
+        if (player == null) Destroy(enemy.gameObject);
         var distance = Vector3.Distance(enemy.position, player.position);
         return distance < chillRange;
     }

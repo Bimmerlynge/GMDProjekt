@@ -20,6 +20,7 @@ namespace Cam
     
         void LateUpdate()
         {
+            if (target == null) return;
             transform.position = target.transform.position + _offset;
         }
     }
