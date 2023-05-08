@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Abilities;
+using Player.Abilities;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DashAbility : MonoBehaviour, IAbility
 {
@@ -17,14 +19,10 @@ public class DashAbility : MonoBehaviour, IAbility
     }
     private Rigidbody _rb;
     [SerializeField] private float dashForce;
-    [SerializeField] private int maxStacks = 2;
-    [SerializeField] private int currentStacks;
     [SerializeField] private State currentState;
     [SerializeField] private int castRate;
-    [SerializeField] private float duration = 1f;
-
-    //private DashAnimation _animation;
-    //private DashParticles _particles;
+    [SerializeField] private float cooldown = 1f;
+    
 
     private Anim _animation;
     private Particles _particles;
@@ -38,15 +36,12 @@ public class DashAbility : MonoBehaviour, IAbility
 
     private void Start()
     {
-        currentStacks = maxStacks;
         currentState = State.Ready;
     }
 
     public void Use()
     {
         if (currentState != State.Ready) return;
-
-
         StartCoroutine(Dash());
         StartCoroutine("Cooldown");
     }
@@ -56,10 +51,10 @@ public class DashAbility : MonoBehaviour, IAbility
         SetPlayerLayer("Dash");
         _animation.Trigger();
         _particles.StartParticleSystem();
-        if (DashEvent != null) DashEvent();
+        FireEvent();
         ApplyForce();
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(cooldown);
         SetPlayerLayer("Player");
     }
 
@@ -71,7 +66,6 @@ public class DashAbility : MonoBehaviour, IAbility
 
     private void ApplyForce()
     {
-        print("applying force");
         _rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
     }
 
@@ -87,5 +81,10 @@ public class DashAbility : MonoBehaviour, IAbility
     {
         currentState = State.Ready;
         
+    }
+
+    public void FireEvent()
+    {
+        if (DashEvent != null) DashEvent();
     }
 }

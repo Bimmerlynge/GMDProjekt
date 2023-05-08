@@ -1,30 +1,35 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Abilities;
 using UnityEngine;
 
-public class RageAbility : MonoBehaviour
+namespace Player.Abilities
 {
-    public delegate void RageAction();
-
-    public static event RageAction OnRage;
+    public class RageAbility : MonoBehaviour, IAbility
+    {
+        public delegate void RageAction();
+        public static event RageAction OnRage;
     
-    private Anim _anim;
+        private Anim _anim;
 
-    private void Awake()
-    {
-        _anim = GetComponent<Anim>();
-    }
+        private void Awake()
+        {
+            _anim = GetComponent<Anim>();
+        }
 
-    public void Use()
-    {
-        _anim.Trigger();
-        FireOnRage();
-    }
+        public void Use()
+        {
+            _anim.Trigger();
+            FireEvent();
+        }
 
-    private void FireOnRage()
-    {
-        if (OnRage != null) OnRage();
+        public IEnumerator Cooldown() { yield return null;}
+
+        public void ResetCooldown() { }
+
+        public void FireEvent()
+        {
+            if (OnRage != null) OnRage();
+        }
+        
     }
 }

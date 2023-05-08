@@ -1,11 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public interface IAbility
+namespace Player.Abilities
 {
-    void Use();
+    public interface IAbility
+    {
+        void Use();
 
-    IEnumerator Cooldown();
-    void ResetCooldown();
+        IEnumerator Cooldown();
+        void ResetCooldown();
+        void FireEvent();
+    }
 }

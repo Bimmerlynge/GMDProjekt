@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Abilities;
 using Audio;
 using Managers;
+using Player.Abilities;
 using Projectiles;
 using UnityEngine;
 using Random = UnityEngine.Random;

@@ -1,6 +1,7 @@
 using System.Collections;
 using DefaultNamespace.Stage;
 using GameData;
+using Managers;
 using UnityEngine;
 
 public class StageReward : MonoBehaviour

@@ -7,7 +7,7 @@ namespace Managers
     public class RuneManager : Singleton<RuneManager>
     {
         [SerializeField] private List<GameObject> runeObjects;
-        private List<RuneSO> activeRunes;
+        private List<RuneSO> activeRunes = new();
 
         private Transform playerObject;
         private RuneRoller _runeRoller;
