@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using Managers;
 using Shared;
 using UnityEngine;
@@ -26,11 +27,13 @@ namespace Player.Abilities
     
         private Anim _animation;
         private Particles _particles;
+        private SoundEffect _sfx;
     
         private void Awake()
         {
             _animation = GetComponent<Anim>();
             _particles = GetComponent<Particles>();
+            _sfx = GetComponent<SoundEffect>();
         }
     
         private void Start()
@@ -41,6 +44,7 @@ namespace Player.Abilities
         {
             if (currentState != State.Ready) return;
             _animation.Trigger();
+            _sfx.PlayClip();
             Invoke("Playparticles", particleDelay);
             StartCoroutine("Cooldown");
         }

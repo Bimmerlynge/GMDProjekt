@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using Managers;
 using Shared;
 using UnityEngine;
@@ -23,9 +24,11 @@ namespace Player.Abilities
         [SerializeField] private float hitRadius;
     
         private Anim _animation;
+        private SoundEffect _sfx;
         private void Awake()
         {
             _animation = GetComponent<Anim>();
+            _sfx = GetComponent<SoundEffect>();
         }
         private void Start()
         {
@@ -35,6 +38,7 @@ namespace Player.Abilities
         {
             if (currentState != State.Ready) return;
             _animation.Trigger();
+            _sfx.PlayClip();
             var enemies = GetEnemiesInRange();
             FireEvent();
             DamageEnemies(enemies);
