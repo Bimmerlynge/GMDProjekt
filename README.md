@@ -5,7 +5,7 @@
  
  3rd party
  
- En kammerat lavede en model af rune objektet og modellen af porten jeg bruger.
+ En kammerat lavede en model af rune objektet og modellen af porten jeg bruger. <br>
  Mixamo: https://www.mixamo.com/#/ <br>
  Lightning Effect: https://www.youtube.com/watch?v=ikkr5jVJfFY <br>
  Lightning Burst: https://www.youtube.com/watch?v=Y0ErHRrlqjs <br>
