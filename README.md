@@ -4,6 +4,9 @@
  
  
  3rd party
+ 
+ En kammerat lavede en model af rune objektet og modellen af porten jeg bruger.
+ Mixamo: https://www.mixamo.com/#/ <br>
  Lightning Effect: https://www.youtube.com/watch?v=ikkr5jVJfFY <br>
  Lightning Burst: https://www.youtube.com/watch?v=Y0ErHRrlqjs <br>
  Health bar poiting in the direction of the camera: https://www.youtube.com/watch?v=ViZto58MgjM&t=521s <br>
