@@ -1,5 +1,8 @@
-public interface IAnimation
+namespace Shared
 {
-    void Awake();
-    void Trigger();
+    public interface IAnimation
+    {
+        void Awake();
+        void Trigger();
+    }
 }

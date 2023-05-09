@@ -1,105 +1,109 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using GameData;
 using UI;
 using UnityEngine;
 
-public class AbilityController : MonoBehaviour
+namespace Player.Abilities
 {
-    private DashAbility _dashAbility;
-    private AttackAbility _attackAbility;
-    private SpecialAbility _specialAbility;
-    private RageAbility _rageAbility;
-
-    private Dictionary<AbilityType, Action> abilityMap;
-
-    private bool _canRage;
-    [SerializeField] private PlayerAbilityState _abilityState;
-    private void Awake()
+    public class AbilityController : MonoBehaviour
     {
-        _dashAbility = GetComponentInChildren<DashAbility>();
-        _attackAbility = GetComponentInChildren<AttackAbility>();
-        _specialAbility = GetComponentInChildren<SpecialAbility>();
-        _rageAbility = GetComponentInChildren<RageAbility>();
+        private DashAbility _dashAbility;
+        private AttackAbility _attackAbility;
+        private SpecialAbility _specialAbility;
+        private RageAbility _rageAbility;
 
-        InitAbilityMap();
-    }
+        private Dictionary<AbilityType, Action> abilityMap;
 
-    private void InitAbilityMap()
-    {
-        abilityMap = new Dictionary<AbilityType, Action>
+        private bool _canRage;
+        [SerializeField]
+        private PlayerAbilityState abilityState;
+        private void Awake()
         {
-            { AbilityType.Attack, Attack },
-            { AbilityType.Special, Special },
-            { AbilityType.Dash, Dash },
-            { AbilityType.Rage, Rage }
-        };
-    }
-    
-    private void Start()
-    {
-        PlayerInputController.OnAbilityInput += HandleInput;
-        RageMeter.OnRageMeterFull += CanRage;
-    }
-    private void OnDestroy()
-    {
-        PlayerInputController.OnAbilityInput -= HandleInput;
-        RageMeter.OnRageMeterFull -= CanRage;
-    }
+            _dashAbility = GetComponentInChildren<DashAbility>();
+            _attackAbility = GetComponentInChildren<AttackAbility>();
+            _specialAbility = GetComponentInChildren<SpecialAbility>();
+            _rageAbility = GetComponentInChildren<RageAbility>();
 
-    private void CanRage(bool value)
-    {
-        _canRage = value;
-    }
-
-    private void HandleInput(AbilityType type)
-    {
-        if (abilityMap.TryGetValue(type, out var action))
-        {
-            action.Invoke();
+            InitAbilityMap();
         }
-    }
 
-    private void SetBusyState()
-    {
-        _abilityState.currentState = PlayerAbilityState.AbilityState.Busy;
-    }
+        private void InitAbilityMap()
+        {
+            abilityMap = new Dictionary<AbilityType, Action>
+            {
+                { AbilityType.Attack, Attack },
+                { AbilityType.Special, Special },
+                { AbilityType.Dash, Dash },
+                { AbilityType.Rage, Rage }
+            };
+        }
+    
+        private void Start()
+        {
+            PlayerInputController.OnAbilityInput += HandleInput;
+            RageMeter.OnRageMeterFull += CanRage;
+        }
+        private void OnDestroy()
+        {
+            PlayerInputController.OnAbilityInput -= HandleInput;
+            RageMeter.OnRageMeterFull -= CanRage;
+        }
 
-    private void Attack()
-    {
-        SetBusyState();
-        _attackAbility.Use();
-    }
+        private void CanRage(bool value)
+        {
+            _canRage = value;
+        }
 
-    private void Special()
-    {
-        SetBusyState();
-        _specialAbility.Use();
-    }
+        private void HandleInput(AbilityType type)
+        {
+            if (abilityMap.TryGetValue(type, out var action))
+            {
+                action.Invoke();
+            }
+        }
 
-    private void Dash()
-    {
-        SetBusyState();
-        _dashAbility.Use();
-    }
+        private void SetBusyState()
+        {
+            abilityState.currentState = PlayerAbilityState.AbilityState.Busy;
+        }
 
-    private void Rage()
-    {
-        if (!_canRage) return;
-        SetBusyState();
-        _rageAbility.Use();
-    }
+        private void Attack()
+        {
+            SetBusyState();
+            _attackAbility.Use();
+        }
 
-    public void AnimationFinished()
-    {
-        _abilityState.currentState = PlayerAbilityState.AbilityState.Ready;
-    }
+        private void Special()
+        {
+            SetBusyState();
+            _specialAbility.Use();
+        }
 
-    public void TriggerSpecialDamage()
-    {
-        _specialAbility.TriggerDamage();
-    }
+        private void Dash()
+        {
+            SetBusyState();
+            _dashAbility.Use();
+        }
+
+        private void Rage()
+        {
+            if (!_canRage) return;
+            SetBusyState();
+            _rageAbility.Use();
+        }
+        
+        // Unity animation event
+        public void AnimationFinished()
+        {
+            abilityState.currentState = PlayerAbilityState.AbilityState.Ready;
+        }
+
+        public void TriggerSpecialDamage()
+        {
+            _specialAbility.TriggerDamage();
+        }
 
     
+    }
 }

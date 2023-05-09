@@ -1,5 +1,4 @@
-using System;
-using Abilities;
+using Shared;
 using UnityEngine;
 
 namespace Projectiles
@@ -14,7 +13,6 @@ namespace Projectiles
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
-            
         }
 
         private void Start()
@@ -26,7 +24,6 @@ namespace Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            print("bolt hit something");
             var health = other.GetComponent<Health>();
             if (health == null) return;
             health.TakeDamage(Damage);

@@ -1,16 +1,19 @@
+using Interactables;
+using Managers;
+using Player;
 using UnityEngine;
 
 
-public class RuneReward : MonoBehaviour, IPickup
+public class RuneReward : MonoBehaviour, IInteractable
 {
     [SerializeField] private bool playerInRange;
 
-    private void Start()
+    public void Start()
     {
-        PlayerInputController.InteractEvent += ApplyReward;
+        PlayerInputController.InteractEvent += OnInteract;
     }
 
-    public void ApplyReward()
+    public void OnInteract()
     {
         if (!playerInRange) return;
         OpenRuneSelector();
@@ -32,9 +35,9 @@ public class RuneReward : MonoBehaviour, IPickup
         playerInRange = false;
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
-        PlayerInputController.InteractEvent -= ApplyReward;
+        PlayerInputController.InteractEvent -= OnInteract;
     }
 
     

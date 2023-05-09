@@ -2446,6 +2446,7 @@ GameObject:
   - component: {fileID: 3935873405661735626}
   - component: {fileID: 3935873405661735625}
   - component: {fileID: 4741529104814059809}
+  - component: {fileID: 2925666311269296691}
   m_Layer: 8
   m_Name: Spider
   m_TagString: Enemy
@@ -2500,7 +2501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
-  _healthData: {fileID: 11400000, guid: dbba535b20a2ad44a8ef34f51e56e1ad, type: 2}
 --- !u!114 &3935873405661735629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2599,3 +2599,15 @@ MonoBehaviour:
   radius: 1.5
   hitCenter: {fileID: 970985377595329180}
   damage: 6
+--- !u!114 &2925666311269296691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3935873405661735639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1289e859bc94e78b77b26844aba5698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

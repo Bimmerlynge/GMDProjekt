@@ -1,26 +1,27 @@
-using System;
 using UnityEngine;
 
-
-public class ObjectToScreenOrientation : MonoBehaviour
+namespace Util
 {
-    private Transform _transform;
-    private Transform _cameraTransform;
-
-    private void Awake()
+    public class ObjectToScreenOrientation : MonoBehaviour
     {
-        _transform = GetComponent<Transform>();
-        _cameraTransform = Camera.main.transform;
-    }
+        private Transform _transform;
+        private Transform _cameraTransform;
 
-    void Update()
-    {
-        Rotate();
-    }
+        private void Awake()
+        {
+            _transform = GetComponent<Transform>();
+            _cameraTransform = Camera.main.transform;
+        }
 
-    void Rotate()
-    {
-        _transform.LookAt(_transform.position + _cameraTransform.rotation * Vector3.back,
-            _cameraTransform.rotation * Vector3.down);
+        void Update()
+        {
+            Rotate();
+        }
+
+        void Rotate()
+        {
+            _transform.LookAt(_transform.position + _cameraTransform.rotation * Vector3.back,
+                _cameraTransform.rotation * Vector3.down);
+        }
     }
 }

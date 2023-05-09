@@ -1,80 +1,58 @@
-using System;
-using Enemies;
+using Shared;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.UI;
 
-public class EnemyController : MonoBehaviour
+namespace Enemies
 {
-    private static int EnemyCount = 0;
-    public delegate void LastEnemyDefeatedAction();
-
-    public static event LastEnemyDefeatedAction OnLastEnemyDefeated;
-    private Health _health;
-
-    private NavMeshAgent _agent;
-    private Transform _target;
-    private Slider healthBar;
-    private Animator _animator;
-    private MeleeAttack _meleeAttack;
-    
-    private void Awake()
+    public class EnemyController : MonoBehaviour
     {
-        _meleeAttack = GetComponent<MeleeAttack>();
-        _animator = GetComponent<Animator>();
-        _health = GetComponent<Health>();
-        _agent = GetComponent<NavMeshAgent>();
-        healthBar = GetComponentInChildren<Slider>();
-       _target = GameObject.Find("PlayerObject").transform;
-       _health.OnHealthChanged += UpdateUI;
-       Health.OnDeathEvent += OnDeath;
-    }
+        private static int EnemyCount = 0;
+        public delegate void LastEnemyDefeatedAction();
+        public static event LastEnemyDefeatedAction OnLastEnemyDefeated;
+        
+        private Animator _animator;
 
-    private void Start()
-    {
-        EnemyCount++;
-    }
-
-    private void UpdateUI(float value)
-    {
-        healthBar.value = value;
-    }
-
-    public void Attack()
-    {
-        _meleeAttack.Use();
-    }
-
-    private void OnDeath(GameObject deadObj)
-    {
-        if (deadObj == gameObject)
+        private void Awake()
         {
-            _animator.SetTrigger("death");
-            Invoke("Die", 0.05f);
+            _animator = GetComponent<Animator>();
+            Health.OnDeathEvent += OnDeath;
+        }
+
+        private void Start()
+        {
+            EnemyCount++;
+        }
+        
+        private void OnDeath(GameObject deadObj)
+        {
+            if (deadObj == gameObject)
+            {
+                _animator.SetTrigger("death");
+                Invoke("Die", 0.05f);
+            }
+            else if (deadObj.tag.Equals("Player"))
+            {
+                _animator.SetTrigger("death");
+                Invoke("Die", 0.05f);
+            }
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
+        
+
+        private void OnDestroy()
+        {
+            CheckIfLastEnemy();
+            EnemyCount--;
+            Health.OnDeathEvent -= OnDeath;
+        }
+
+        private void CheckIfLastEnemy()
+        {
+            if (EnemyCount > 1) return;
+            if (OnLastEnemyDefeated != null) OnLastEnemyDefeated.Invoke();
         }
     }
-
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
-
-
-    private void OnDestroy()
-    {
-        
-        CheckIfLastEnemy();
-        EnemyCount--;
-        _health.OnHealthChanged -= UpdateUI;
-        Health.OnDeathEvent -= OnDeath;
-    }
-
-    private void CheckIfLastEnemy()
-    {
-        if (EnemyCount > 1) return;
-        if (OnLastEnemyDefeated != null) OnLastEnemyDefeated.Invoke();
-    }
-
-   
-    
 }

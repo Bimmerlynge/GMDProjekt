@@ -1,22 +1,25 @@
-using DefaultNamespace;
+using Managers;
 using UnityEngine;
 
-public class Spider : MonoBehaviour
+namespace Enemies.Melee
 {
-    [SerializeField] private GameObject spiderSpawn;
-    [SerializeField] private int amount;
-
-    private void OnDisable()
+    public class Spider : MonoBehaviour
     {
-        if (!GameStateHandler.Instance.IsSpawnSafe) return;
-        SpawnMinions();
-    }
+        [SerializeField] private GameObject spiderSpawn;
+        [SerializeField] private int amount;
 
-    private void SpawnMinions()
-    {
-        for (int i = 0; i < amount; i++)
+        private void OnDisable()
         {
-            Instantiate(spiderSpawn, transform.position, Quaternion.identity);
+            if (!GameStateHandler.Instance.IsSpawnSafe) return;
+            SpawnMinions();
+        }
+
+        private void SpawnMinions()
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Instantiate(spiderSpawn, transform.position, Quaternion.identity);
+            }
         }
     }
 }

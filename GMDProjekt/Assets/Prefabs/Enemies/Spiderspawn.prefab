@@ -564,13 +564,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4115410410122126792}
   - component: {fileID: 4115410410122126799}
-  - component: {fileID: 4115410410122126793}
   - component: {fileID: 4115410410122126794}
   - component: {fileID: 4115410410122126795}
   - component: {fileID: 4115410410122126796}
   - component: {fileID: 4115410410122126797}
   - component: {fileID: 4115410410122126798}
   - component: {fileID: 2025884166252059841}
+  - component: {fileID: 1347525643199057995}
   m_Layer: 8
   m_Name: Spiderspawn
   m_TagString: Enemy
@@ -616,18 +616,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &4115410410122126793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115410410122126785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e652af19734aeb8fd41b9f07f56ea3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4115410410122126794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,7 +630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
-  _healthData: {fileID: 11400000, guid: dbba535b20a2ad44a8ef34f51e56e1ad, type: 2}
 --- !u!114 &4115410410122126795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,6 +708,18 @@ MonoBehaviour:
   radius: 0.5
   hitCenter: {fileID: 1018724486844608307}
   damage: 2
+--- !u!114 &1347525643199057995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115410410122126785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1289e859bc94e78b77b26844aba5698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4115410410219308019
 GameObject:
   m_ObjectHideFlags: 0

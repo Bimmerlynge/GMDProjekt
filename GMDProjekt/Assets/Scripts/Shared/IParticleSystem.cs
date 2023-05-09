@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IParticleSystem
+namespace Shared
 {
-    void StartParticleSystem();
-    void StopParticleSystem();
+    public interface IParticleSystem
+    {
+        void StartParticleSystem();
+        void StopParticleSystem();
+    }
 }

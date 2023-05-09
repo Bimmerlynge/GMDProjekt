@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,7 +7,7 @@ namespace Runes
     public class RuneRoller : MonoBehaviour
     {
         [SerializeField] private List<RuneSO> allRunes;
-        [SerializeField] private List<RuneSO> currentPool;
+        private List<RuneSO> currentPool;
 
         private void Start()
         {

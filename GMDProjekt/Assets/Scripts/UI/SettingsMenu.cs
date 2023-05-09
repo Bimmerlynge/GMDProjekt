@@ -1,10 +1,10 @@
-using System;
 using GameData;
+using Managers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace DefaultNamespace
+namespace UI
 {
     public class SettingsMenu : MonoBehaviour
     {
@@ -41,6 +41,7 @@ namespace DefaultNamespace
 
         public void MainMenu()
         {
+            Destroy(UIManager.Instance.gameObject);
             gameObject.SetActive(false);
             SceneLoader.Instance.LoadMainMenu();
         }

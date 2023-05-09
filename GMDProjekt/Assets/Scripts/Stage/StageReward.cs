@@ -1,28 +1,31 @@
 using System.Collections;
-using DefaultNamespace.Stage;
 using GameData;
+using Managers;
 using UnityEngine;
 
-public class StageReward : MonoBehaviour
+namespace Stage
 {
-    [SerializeField] private StageRewardData stageReward;
-    public delegate void RewardPickupAction();
-    public static event RewardPickupAction OnRewardPickedUp;
-    
-    private GameObject instantiatedObj;
-    public void Instantiate()
+    public class StageReward : MonoBehaviour
     {
-        instantiatedObj = Instantiate(stageReward.Prefab, new Vector3(0, 1, 10), Quaternion.identity);
-        StartCoroutine(WaitForRewardPickup());
-    }
+        [SerializeField] private StageRewardData stageReward;
+        public delegate void RewardPickupAction();
+        public static event RewardPickupAction OnRewardPickedUp;
     
-    private IEnumerator WaitForRewardPickup()
-    {
-        while (instantiatedObj != null)
+        private GameObject instantiatedObj;
+        public void Instantiate()
         {
-            yield return null;
+            instantiatedObj = Instantiate(stageReward.Prefab, new Vector3(0, 1, 10), Quaternion.identity);
+            StartCoroutine(WaitForRewardPickup());
         }
-        UIManager.Instance.SetInteractablePanel(false);
-        if (OnRewardPickedUp != null) OnRewardPickedUp();
+    
+        private IEnumerator WaitForRewardPickup()
+        {
+            while (instantiatedObj != null)
+            {
+                yield return null;
+            }
+            UIManager.Instance.SetInteractablePanel(false);
+            if (OnRewardPickedUp != null) OnRewardPickedUp();
+        }
     }
 }

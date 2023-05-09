@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using GameData;
+using Managers;
 using TMPro;
 using UnityEngine;
 
@@ -13,9 +15,14 @@ namespace UI
 
         private void Start()
         {
+            StartCoroutine(BufferLoad());
+        }
+
+        private IEnumerator BufferLoad()
+        {
+            yield return new WaitForSeconds(1f);
             FreezeTime();
             SetRuntimeText();
-            
         }
 
         private void OnDisable()
@@ -30,6 +37,7 @@ namespace UI
 
         public void MainMenu()
         {
+            Destroy(UIManager.Instance.gameObject);
             gameObject.SetActive(false);
             SceneLoader.Instance.LoadMainMenu();
         }

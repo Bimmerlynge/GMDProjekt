@@ -864,6 +864,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandardStage
       objectReference: {fileID: 0}
+    - target: {fileID: 7823997182977502852, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: enemyTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: optionPool.Array.data[1]
+      value: 
+      objectReference: {fileID: 3299081993611005843, guid: 36967600a220ce44798461969d8b7c96,
+        type: 3}
     - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
         type: 3}
       propertyPath: optionPoints.Array.data[0]

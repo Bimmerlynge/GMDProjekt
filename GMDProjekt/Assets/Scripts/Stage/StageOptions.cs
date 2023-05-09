@@ -1,9 +1,10 @@
-using System;
 using System.Collections.Generic;
+using Interactables;
+using Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace DefaultNamespace.Stage
+namespace Stage
 {
     public class StageOptions : MonoBehaviour
     {
@@ -11,12 +12,6 @@ namespace DefaultNamespace.Stage
         
         [SerializeField] private List<GameObject> optionPool;
         
-        private void Awake()
-        {
-            //GenerateStageOptions();
-            //SetCollidersRefs();
-        }
-
         private void Start()
         {
             StageOption.OnStageOptionChosen += OnOptionChosen;
@@ -57,7 +52,5 @@ namespace DefaultNamespace.Stage
         {
             SceneLoader.Instance.LoadNextScene();
         }
-
-       
     }
 }

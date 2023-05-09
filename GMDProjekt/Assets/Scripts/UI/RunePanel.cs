@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +14,6 @@ namespace UI
 
         public void SetRuneIcon(RuneSO rune)
         {
-            print(rune.icon.name);
             var type = rune.type;
             switch (type)
             {

@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace DefaultNamespace.Stage
+namespace Stage
 {
     public class LightController : MonoBehaviour
     {
@@ -37,6 +36,7 @@ namespace DefaultNamespace.Stage
 
         private void SetLightIntensity()
         {
+            if (_player == null) return;
             var distance = Vector2.Distance(GetLightPosition(), GetPlayerPosition());
             _light.intensity = distance < maxDistance ? Calculate(distance) : 0f;
         }

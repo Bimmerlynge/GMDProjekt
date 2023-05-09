@@ -1,52 +1,53 @@
 using GameData;
+using Player;
 using UnityEngine;
 
-public class StageOption : MonoBehaviour
+namespace Interactables
 {
+   public class StageOption : MonoBehaviour, IInteractable
+   {
    
-   [SerializeField] private GameObject reward;
-   [SerializeField] private StageRewardData rewardData;
-   [SerializeField] private bool playerInRange;
+      [SerializeField] private GameObject reward;
+      [SerializeField] private StageRewardData rewardData;
+      private bool playerInRange;
 
-   public delegate void StageOptionAction();
-   public static event StageOptionAction OnStageOptionChosen;
+      public delegate void StageOptionAction();
+      public static event StageOptionAction OnStageOptionChosen;
    
-   private void Start()
-   {
-      PlayerInputController.InteractEvent += OnInteract;
-   }
+      public void Start()
+      {
+         PlayerInputController.InteractEvent += OnInteract;
+      }
+      public void OnDestroy()
+      {
+         PlayerInputController.InteractEvent -= OnInteract;
+      }
+      public void OnInteract()
+      {
+         if (!playerInRange) return;
+         SetStageRewardData();
+         NotifyListeners();
+      }
+      
+      public void OnTriggerEnter(Collider other)
+      {
+         playerInRange = true;
+      }
+      
+      public void OnTriggerExit(Collider other)
+      {
+         playerInRange = false;
+      }
+      
 
-   private void OnInteract()
-   {
-      if (!playerInRange) return;
-      SetStageRewardData();
-      NotifyListeners();
-   }
+      private void SetStageRewardData()
+      {
+         rewardData.SetCurrentPrefab(reward);
+      }
 
-   private void SetStageRewardData()
-   {
-      rewardData.SetCurrentPrefab(reward);
-   }
-
-   private void NotifyListeners()
-   {
-      if (OnStageOptionChosen != null) OnStageOptionChosen();
-   }
-
-
-   private void OnTriggerEnter(Collider other)
-   {
-      playerInRange = true;
-   }
-   
-
-   private void OnTriggerExit(Collider other)
-   {
-      playerInRange = false;
-   }
-
-   private void OnDestroy()
-   {
-      PlayerInputController.InteractEvent -= OnInteract;
+      private void NotifyListeners()
+      {
+         if (OnStageOptionChosen != null) OnStageOptionChosen();
+      }
    }
 }
