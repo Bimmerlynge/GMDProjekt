@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Collide
   - Enemy
+  - MeleeAtk
+  - PlayerAtk
   layers:
   - Default
   - TransparentFX
@@ -13,13 +15,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerInteractable
+  - Player
+  - Enemy
+  - Ground
+  - Dash
+  - NonDashable
+  - Projetctile
   - 
   - 
   - 
