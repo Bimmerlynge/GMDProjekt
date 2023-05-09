@@ -15,8 +15,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 14a0f66a7be165c4ba476e3d7c40e390, type: 3}
   name: Rage Of Thor
   type: 3
-  description: 
+  description: Periodically shoot out high voltage beam towards a nearby enemy
   rarity: 0
-  effect: 
+  effect: Damage
   effectNumber: 26
   runeLvl: 0

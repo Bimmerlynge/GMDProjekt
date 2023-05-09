@@ -15,10 +15,5 @@ namespace Shared
         {
             _animator.SetTrigger(triggerName);
         }
-
-        public void SetState(bool value)
-        {
-            _animator.SetBool(triggerName, value);
-        }
     }
 }

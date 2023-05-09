@@ -9,8 +9,8 @@ namespace Stage
     public class StageOptions : MonoBehaviour
     {
         [SerializeField] private List<GameObject> optionPoints;
+        [SerializeField] private List<StageOption> optionPool;
         
-        [SerializeField] private List<GameObject> optionPool;
         
         private void Start()
         {
@@ -45,7 +45,7 @@ namespace Stage
             var rand = Random.Range(0, optionPool.Count);
             var toReturn = optionPool[rand];
             optionPool.Remove(toReturn);
-            return toReturn;
+            return toReturn.gameObject;
         }
 
         private void OnOptionChosen()

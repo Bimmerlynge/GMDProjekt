@@ -14,15 +14,12 @@ namespace Player.Abilities
             OnCooldown
         }
         [SerializeField] private State currentState;
-    
         [SerializeField] private float damage;
         [SerializeField] private float castRate;
         [SerializeField] private float abilityRadius;
-
         [SerializeField] private float particleDelay;
 
         public delegate void SpecialAction();
-
         public static event SpecialAction SpecialEvent;
     
         private Anim _animation;

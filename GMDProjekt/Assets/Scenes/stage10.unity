@@ -697,7 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCount: 1
   enemyTypes:
-  - {fileID: 5827293807390749749, guid: 07067c6b7aac6ee43afd61bf87884681, type: 3}
+  - {fileID: 5827293807390749747, guid: 07067c6b7aac6ee43afd61bf87884681, type: 3}
   _spawnArea: {fileID: 1391847205}
 --- !u!114 &1391847205
 MonoBehaviour:

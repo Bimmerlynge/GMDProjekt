@@ -12,6 +12,10 @@ public class RuneReward : MonoBehaviour, IInteractable
     {
         PlayerInputController.InteractEvent += OnInteract;
     }
+    public void OnDestroy()
+    {
+        PlayerInputController.InteractEvent -= OnInteract;
+    }
 
     public void OnInteract()
     {
@@ -34,11 +38,4 @@ public class RuneReward : MonoBehaviour, IInteractable
     {
         playerInRange = false;
     }
-
-    public void OnDestroy()
-    {
-        PlayerInputController.InteractEvent -= OnInteract;
-    }
-
-    
 }

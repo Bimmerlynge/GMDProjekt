@@ -44,6 +44,7 @@ public class DashAbility : MonoBehaviour, IAbility
         StartCoroutine("Cooldown");
     }
 
+    
     private IEnumerator Dash()
     {
         SetPlayerLayer("Dash");

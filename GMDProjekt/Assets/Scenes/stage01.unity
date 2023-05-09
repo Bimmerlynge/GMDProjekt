@@ -869,11 +869,40 @@ PrefabInstance:
       propertyPath: enemyTypes.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7823997182977502852, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: enemyTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 5827293807390749747, guid: 07067c6b7aac6ee43afd61bf87884681,
+        type: 3}
+    - target: {fileID: 7823997182977502852, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: enemyTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 5827293807390749749, guid: 07067c6b7aac6ee43afd61bf87884681,
+        type: 3}
+    - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: fisk.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: fisk.Array.data[0]
+      value: 
+      objectReference: {fileID: 1121661167461979007, guid: 36967600a220ce44798461969d8b7c96,
+        type: 3}
+    - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: optionPool.Array.data[0]
+      value: 
+      objectReference: {fileID: 1121661167461979007, guid: 36967600a220ce44798461969d8b7c96,
+        type: 3}
     - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
         type: 3}
       propertyPath: optionPool.Array.data[1]
       value: 
-      objectReference: {fileID: 3299081993611005843, guid: 36967600a220ce44798461969d8b7c96,
+      objectReference: {fileID: 2422471139075221922, guid: a2cfd92f964661640aa1556b4f2fff53,
         type: 3}
     - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
         type: 3}

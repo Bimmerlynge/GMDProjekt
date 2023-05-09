@@ -28,17 +28,16 @@ namespace Player
             _moveDirection = input.GetIsometricVector3();
             Orient();
         }
-        private void Rotation()
-        {
-            var lookRotation = Quaternion.LookRotation(_orientation, Vector3.up);
-            _rb.MoveRotation(lookRotation);
-        }
-
+        
         private void Move()
         {
             var moveDelta = _moveDirection * moveSpeed;
             _rb.velocity = moveDelta;
-      
+        }
+        private void Rotation()
+        {
+            var lookRotation = Quaternion.LookRotation(_orientation, Vector3.up);
+            _rb.MoveRotation(lookRotation);
         }
 
         private void Orient()

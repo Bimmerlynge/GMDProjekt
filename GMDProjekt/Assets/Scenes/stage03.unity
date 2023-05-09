@@ -328,6 +328,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandardStage
       objectReference: {fileID: 0}
+    - target: {fileID: 7823997182977502852, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: enemyTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 5827293807390749747, guid: 07067c6b7aac6ee43afd61bf87884681,
+        type: 3}
+    - target: {fileID: 7823997182977502852, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: enemyTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 3935873405661735629, guid: 55d731a6530cf4747ac7375d89f3cc2c,
+        type: 3}
     - target: {fileID: 7823997182977502853, guid: 0dde2c2017248ed4282040555d392355,
         type: 3}
       propertyPath: count

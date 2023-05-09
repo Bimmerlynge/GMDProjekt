@@ -30,7 +30,7 @@ namespace Player
         
             _actions.Player.Dash.Enable();
             _actions.Player.Dash.performed += Dash;
-    
+            
             _actions.Player.PrimaryAtk.Enable();
             _actions.Player.PrimaryAtk.performed += PrimAtk;
         

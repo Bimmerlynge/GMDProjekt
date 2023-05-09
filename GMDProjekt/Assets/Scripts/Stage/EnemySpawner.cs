@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,7 +8,7 @@ namespace Stage
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private int enemyCount = 10;
-        [SerializeField] private List<GameObject> enemyTypes;
+        [SerializeField] private List<EnemyController> enemyTypes;
 
         [SerializeField]
         private SpawnArea _spawnArea;
@@ -29,7 +30,7 @@ namespace Stage
         private GameObject GetRandomEnemy()
         {
             var rand = Random.Range(0, enemyTypes.Count);
-            return enemyTypes[rand];
+            return enemyTypes[rand].gameObject;
         }
     }
 }

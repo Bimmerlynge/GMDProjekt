@@ -798,6 +798,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7823997182977502852, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: enemyTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 5827293807390749747, guid: 07067c6b7aac6ee43afd61bf87884681,
+        type: 3}
+    - target: {fileID: 7823997182977502852, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: enemyTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 4115410410122126795, guid: fdb7c90786ff21e4db5898b93cea87ac,
+        type: 3}
     - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
         type: 3}
       propertyPath: optionPoints.Array.data[0]
