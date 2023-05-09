@@ -11,9 +11,12 @@ namespace Managers
         [SerializeField] private GameObject runeSelectionPanel;
         [SerializeField] private GameObject settingsPanel;
         [SerializeField] private GameObject endGameMenu;
-        
-        
-        
+
+        public bool GetRageValue()
+        {
+            return gameHUD.GetRageValue();
+        }
+
         public void IncrementRage()
         {
             gameHUD.IncrementRage();
