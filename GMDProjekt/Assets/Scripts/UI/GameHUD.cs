@@ -39,7 +39,13 @@ namespace UI
             if (rageMeter.enabled == false) return;
             rageMeter.value += 0.1f;
         }
-        
-        
+
+        public bool GetRageValue()
+        {
+            var value = rageMeter.value;
+            return value >= 1f;
+        }
+
+
     }
 }

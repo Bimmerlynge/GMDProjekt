@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using GameData;
+using Managers;
 using UI;
 using UnityEngine;
 
@@ -88,11 +89,16 @@ namespace Player.Abilities
 
         private void Rage()
         {
-            if (!_canRage) return;
+            if (!GetRageValue()) return;
             SetBusyState();
             _rageAbility.Use();
         }
-        
+
+        private bool GetRageValue()
+        {
+            return UIManager.Instance.GetRageValue();
+        }
+
         // Unity animation event
         public void AnimationFinished()
         {
