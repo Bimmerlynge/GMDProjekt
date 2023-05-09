@@ -90,8 +90,7 @@ namespace Player
 
         private void SetMovingState(bool state)
         {
-            print("animator null? " + (_animator == null));
-            print("abilitState null? " + (abilityState == null));
+            
             if (abilityState.currentState == PlayerAbilityState.AbilityState.Busy) return;
             _animator.SetBool("isMoving", state);
         }

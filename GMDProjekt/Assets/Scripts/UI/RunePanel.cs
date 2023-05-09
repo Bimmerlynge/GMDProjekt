@@ -14,7 +14,6 @@ namespace UI
 
         public void SetRuneIcon(RuneSO rune)
         {
-            print(rune.icon.name);
             var type = rune.type;
             switch (type)
             {

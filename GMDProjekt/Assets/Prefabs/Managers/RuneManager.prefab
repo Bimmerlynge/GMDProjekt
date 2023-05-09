@@ -81,7 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runeObjects: []
-  activeRunes: []
 --- !u!114 &5090261865946859663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +97,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e994b4a9b6019f4194ffac522f6550a, type: 2}
   - {fileID: 11400000, guid: 1ae855e8daedf1543b7e412a2f494b11, type: 2}
   - {fileID: 11400000, guid: 9f86ae92ffd9bec458ca37e835dcd388, type: 2}
-  currentPool: []
 --- !u!1 &5090261866060852151
 GameObject:
   m_ObjectHideFlags: 0
@@ -5097,7 +5095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a7e645fdd24e045939434c8c637959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalRune: {fileID: 11400000, guid: 123f06efc723aa245ace6c97606f1d03, type: 2}
+  originalSO: {fileID: 11400000, guid: 123f06efc723aa245ace6c97606f1d03, type: 2}
   effectRadius: 7
   particleObj: {fileID: 2333774229555573481, guid: 3982ef5cec9a87c46941135bcc20da0d,
     type: 3}

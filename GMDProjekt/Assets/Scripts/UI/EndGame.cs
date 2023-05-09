@@ -37,6 +37,7 @@ namespace UI
 
         public void MainMenu()
         {
+            Destroy(UIManager.Instance.gameObject);
             gameObject.SetActive(false);
             SceneLoader.Instance.LoadMainMenu();
         }

@@ -328,6 +328,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StandardStage
       objectReference: {fileID: 0}
+    - target: {fileID: 7823997182977502853, guid: 0dde2c2017248ed4282040555d392355,
+        type: 3}
+      propertyPath: count
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7823997182977502855, guid: 0dde2c2017248ed4282040555d392355,
         type: 3}
       propertyPath: optionPoints.Array.data[0]

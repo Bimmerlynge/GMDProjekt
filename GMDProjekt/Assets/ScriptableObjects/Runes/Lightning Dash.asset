@@ -18,5 +18,5 @@ MonoBehaviour:
   description: Deals damage in an area around the player
   rarity: 0
   effect: Dash Damage
-  effectNumber: 12
+  effectNumber: 15
   runeLvl: 3

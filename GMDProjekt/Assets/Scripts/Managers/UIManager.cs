@@ -19,6 +19,11 @@ namespace Managers
             gameHUD.IncrementRage();
         }
 
+        public void DisableGameHud()
+        {
+            gameHUD.gameObject.SetActive(false);
+        }
+
         public void SetGameHudPanel(bool state)
         {
             gameHUD.gameObject.SetActive(state);

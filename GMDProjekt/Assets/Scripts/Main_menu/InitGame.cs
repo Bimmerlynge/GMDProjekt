@@ -22,8 +22,15 @@ namespace Main_menu
             InitStageRewardData();
             InitHeathData();
             ResetTimer();
+            ResetRuneManager();
         }
-    
+
+        private void ResetRuneManager()
+        {
+            var manager = RuneManager.Instance;
+            Destroy(manager);
+        }
+
         private void SetAudioManager()
         {
             var handler = PlayerPrefsHandler.Instance;
