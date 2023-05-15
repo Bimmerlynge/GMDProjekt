@@ -1,7 +1,7 @@
 # GMDProjekt
  
  Youtube video: https://youtu.be/HxT2YvNfPEs <br>
- Uploaded Build1 2 minutes past deadline, one that shouldn't crash at stage02 completetion...
+ Uploaded Build1 2 minutes past deadline, one that shouldn't crash at stage02 completion...
  
  3rd party
  
